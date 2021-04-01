@@ -90,19 +90,23 @@ public class UserController {
 	
 	@GetMapping("login")
 	public String login(String userId, String userPw) {
-		
+		// 로그인화면으로 이동
 		return "/member/user/login";
 	}
 	
 	
 	
 	
+	
+	
 	@GetMapping("loginimpl")
 	public String loginmpl() {
+		// 로그인 완료되면 메인 페이지로 이동
 		
-		
-		return null;
+		return "/index";
 	}
+	
+	
 	
 	
 	
