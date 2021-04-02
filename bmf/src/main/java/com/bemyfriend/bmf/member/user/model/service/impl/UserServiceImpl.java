@@ -20,6 +20,9 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	
+	
+	
+	
 	@Override
 	public User memberAuthenticate(String userId, String userPw) {
 		
