@@ -11,7 +11,7 @@
 		// 사용자가 입력한 아이디값을 받아서
 		let userId = id.value; //id가 id인 데이터의 value값
 		let idCheck = document.querySelector('#idCheck');
-		let url = "/user/idcheck.do"
+		let url = "/user/idcheck"
 		
 		if(userId){ // true일때
 			fetch(url,{
@@ -84,22 +84,22 @@
 //member 로그인시 사용할 메소드
 	let login = () => {
 		let paramObj = new Object();
-		paramObj.id = id.value;
-		paramObj.pw = pw.value;
+		paramObj.userId = id.value;
+		paramObj.userPw = pw.value;
 		
 		let headerObj = new Headers();
-		headerObj.append("content-type", "application/x-www-form-urlencoded");
-		
+		headerObj.append("content-type", "application/json");
+		console.dir(paramObj);
 	
 		fetch(urlToLogin, { /* 해당 url로 아래의 객체를 포함하여 통신요청 */
 			method:"post",
-			headers:headerObj,
-			body:"data="+JSON.stringify(paramObj) /* json으로 문자열로 전환하여 body에 저장 */
+			headers:headerObj, 
+			body: JSON.stringify(paramObj) /* json으로 문자열로 전환하여 body에 저장 */
 		
 		}).then(response => { /* 200번대 코드가 넘어오면 ok => true */
 			
 			if(response.ok){
-				return response.text(); /*controller 의 loginimpl에서 text값을 getwriter() */	
+				return response.text(); /*controller 의 loginimpl에서 return  */	
 			}
 			throw new AsyncPageError(response.text()); /* 200번코드가 아니면 catch 문으로 ! */
 			
@@ -110,8 +110,8 @@
 				
 			}else if(text == 'success'){
 				alert('로그인 되었습니다.');
-				location.href = urlToMyPage;	
-				
+				location.href = "/index";	
+			
 			}else if(text == 'withdraw'){
 				alert('탈퇴한 회원입니다.');
 			

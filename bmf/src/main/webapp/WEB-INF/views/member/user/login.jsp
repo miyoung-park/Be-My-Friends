@@ -147,28 +147,28 @@
 								<div class="col-md-7-p-log">
 									<div class="contact-wrap w-100 p-md-5 p-4">
 					
-										<form method="POST" id="contactForm" name="contactForm" class="contactForm">
+										<div id="contactForm" class="contactForm">
 											<div class="row">
 												<div class="col-md-12">
 													<div class="form-group">
-														<label class="label" for="userId">아이디</label>
-														<input type="text" class="form-control" name="userId" id="userId" >
+														<label class="label" for="id">아이디</label>
+														<input type="text" class="form-control" name="id" id="id" >
 													</div>
 												</div>
 												<div class="col-md-12">
 													<div class="form-group">
-														<label class="label" id="userPw" for="userPw" >비밀번호</label>
-														<input type ="text" class="form-control" name="userPw" id="userPw">
+														<label class="label" for="pw" >비밀번호</label>
+														<input type ="text" class="form-control" name="pw" id="pw">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<div class="form-group-log">
-														<input type="submit" onclick="login()" value="로그인" class="btn btn-primary">
+														<button type="submit" onclick="login()"  class="btn btn-primary">로그인</button>
 														<div class="submitting"></div>
 													</div>
 												</div>
 											</div>
-										</form>
+										</div>
 									</div>
 								</div>
 								
@@ -256,8 +256,10 @@
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-
+  
+  
+  
+  <script type="text/javascript"> const urlToLogin = 'loginimpl';</script>
   <script src="../../../../resources/js/jquery.min.js"></script>
   <script src="../../../../resources/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="../../../../resources/js/popper.min.js"></script>
@@ -272,6 +274,7 @@
   <script src="../../../../resources/js/jquery.magnific-popup.min.js"></script>
   <script src="../../../../resources/js/scrollax.min.js"></script>
   <script src="../../../../resources/js/main.js"></script>
+  <script src="../../../../resources/js/member.js"></script>
 
 
     

@@ -19,7 +19,6 @@
 		<property name="username" value="admin"/>
 		<property name="password" value=""/>
 	</bean>
-	
 
 		
 		

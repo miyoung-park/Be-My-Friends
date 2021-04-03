@@ -14,7 +14,7 @@ import com.bemyfriend.bmf.member.company.model.vo.Company;
 
 
 
-
+@Controller
 @RequestMapping("member/company")
 public class CompanyController {
 
