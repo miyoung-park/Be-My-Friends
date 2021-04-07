@@ -1,5 +1,7 @@
 package com.bemyfriend.bmf.member.user.model.service;
 
+import java.util.Map;
+
 import com.bemyfriend.bmf.member.user.model.vo.User;
 
 public interface UserService {
@@ -12,7 +14,7 @@ public interface UserService {
 	
 	User selectMemberById(String userId);
 	
-	void authenticateEmail(User persistInfo, String authPath);
+	void authenticateEmail(User persistUser);
 	
 	
 

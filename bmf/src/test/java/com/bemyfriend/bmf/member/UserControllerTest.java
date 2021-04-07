@@ -53,10 +53,15 @@ public class UserControllerTest {
 	public void authenticateEmail() throws Exception {
 		mockMvc.perform(post("/member/user/mailauth")
 							.param("userId", "helloSpring")
-							.param("password", "1*al201210380")
-							.param("email", "qkraldud1529@gmail.com")
-							.param("tell", "010-2456-0304")).andDo(print());
+							.param("userPw", "1*al201210380")
+							.param("userMail", "qkraldud1529@gmail.com")
+							.param("userTell", "010-2456-0304")
+							.param("userAdd", "경기도 의정부시")
+							.param("userName", "testUser")
+							.param("userBirth", "2021-04-01")).andDo(print());
 	}
+	
+	
 	
 	@Test
 	public void login() throws Exception {

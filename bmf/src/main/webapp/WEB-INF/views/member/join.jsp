@@ -137,7 +137,7 @@
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-md-6 text-center mb-5">
-						<h2 class="heading-section">개인회원 로그인</h2>
+						<h2 class="heading-section">회원가입하기</h2>
 					</div>
 				</div>
 				<div class="row justify-content-center">
@@ -148,22 +148,9 @@
 									<div class="contact-wrap w-100 p-md-5 p-4">
 					
 										<div id="contactForm" class="contactForm">
-											<div class="row">
-												<div class="col-md-12">
-													<div class="form-group">
-														<label class="label">아이디</label>
-														<input type="text" class="form-control" name="userId" id="userId" >
-													</div>
-												</div>
-												<div class="col-md-12">
-													<div class="form-group">
-														<label class="label">비밀번호</label>
-														<input type ="text" class="form-control" name="userPw" id="userPw">
-													</div>
-												</div>
-												<div class="col-md-12">
-													<div class="form-group-log-p">
-														<button type="submit" onclick="login()"  class="btn btn-primary">로그인</button>
+													<div class="form-group-log">
+														<button type="button" onclick="location.href='/member/user/join'"  class="btn btn-primary">개인 회원가입</button>
+														<button type="button" onclick="location.href='/member/company/join'" class="btn btn-primary">기업 회원가입</button>
 													</div>
 												</div>
 											</div>

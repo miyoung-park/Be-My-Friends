@@ -1,6 +1,7 @@
 // JS 전역변수로 설정
 	let idCheckFlg = false;
 	
+	
 // 회원가입시에 기존에 있는 아이디인지 확인을 위해 필요한 메소드
 	let idCheck = () => {
 		
@@ -9,15 +10,14 @@
 		
 		
 		// 사용자가 입력한 아이디값을 받아서
-		let userId = id.value; //id가 id인 데이터의 value값
+		 //id가 userId인 데이터의 value값
 		let idCheck = document.querySelector('#idCheck');
-		let url = "/user/idcheck"
 		
-		if(userId){ // true일때
-			fetch(url,{
-				method: "post",
+		
+		if(userId.value){ // true일때
+			fetch("idcheck?userId=" + userId.value,{
+				method: "GET",
 				headers: headerObj,
-				body: "userId=" + userId
 				
 			}).then(response => response.text()) // then해주면 응답(response)이 넘어옴, 바로 return
 			  .then((message)=>{ // message가 넘어올 것
@@ -27,6 +27,7 @@
 				} else {
 					idCheckFlg = false;
 					idCheck.innerHTML = '사용 불가능한 아이디 입니다.';
+					userId.value=" ";
 				}				
 			  }).catch(error => {
 				 
@@ -40,26 +41,26 @@
 	
 	
 // 아이디체크와 비밀번호 조합이 잘되었는지 확인하고 비밀번호가 서로 일치하는지 확인하는 js
-	if(document.querySelector('#form_join') != null){
-		  document.querySelector('#form_join').addEventListener('submit',(e) => {
+	if(document.querySelector('#contactForm') != null){
+		  document.querySelector('#contactForm').addEventListener('submit',(e) => {
 			     //  요소의 아이디로 엘리먼트 객체 호출 가능(웹표준이 아님)    
 			      if(!idCheckFlg){
 			         alert("아이디 중복검사를 통과하지 못했습니다.");
-			         id.value = "";
+			         userId.value = "";
 			         e.preventDefault();
 			      }
 			      
-			      let password = pw.value;
+			      let password = userPw.value;
 			      let regExp = /^(?!.*[ㄱ-힣])(?=.*\W)(?=.*\d)(?=.*[a-zA-Z])(?=.{8,})/;
 			     
 			      if(!(regExp.test(password))){
 			         //form의 데이터 전송을 막음
 			         e.preventDefault();
 			         pw_confirm.innerHTML = '비밀번호는 숫자,영문자,특수문자 조합의 8글자 이상이어야 합니다.';
-			         pw.value = '';
+			         userPw.value = '';
 			      } else {
 			    	  
-			    	  let firstPw =  pw.value;
+			    	  let firstPw = userPw.value;
 					  let secondPw = checkpw.value;
 					  //비밀번호 double check 메소드
 					  if(firstPw != secondPw){
@@ -84,14 +85,14 @@
 //member 로그인시 사용할 메소드
 	let login = () => {
 		let paramObj = new Object();
-		paramObj.userId = id.value;
-		paramObj.userPw = pw.value;
+		paramObj.userId = userId.value;
+		paramObj.userPw = userPw.value;
 		
 		let headerObj = new Headers();
-		headerObj.append("content-type", "application/json");
+		headerObj.append("content-type", "application/json"); /*json으로 받기 때문에 Controller에서 @RequestBody로 잡아주어야 함 */
 		console.dir(paramObj);
 	
-		fetch(urlToLogin, { /* 해당 url로 아래의 객체를 포함하여 통신요청 */
+		fetch("loginimpl", { /* 해당 url로 아래의 객체를 포함하여 통신요청 */
 			method:"post",
 			headers:headerObj, 
 			body: JSON.stringify(paramObj) /* json으로 문자열로 전환하여 body에 저장 */
@@ -125,8 +126,7 @@
 	
 	
 
-	
-	
+
 	let mypageError = ()=> {
 		alert("로그인 후 이용하실 수 있습니다.");
 		location.href="/main.do";
@@ -139,17 +139,17 @@
 // Member의 id값 찾는 메소드
 	let findUserId = () =>{ 
 		let infoObj = new Object();
-		infoObj.username = username.value;
-		infoObj.phone = phone.value;
+		infoObj.userName = userName.value;
+		infoObj.userTell = userTell.value;
 		
 		let headerObj = new Headers();
-		headerObj.append("content-type", "application/x-www-form-urlencoded");
+		headerObj.append("content-type", "application/json");
 		
 		//비동기 처리해서 화면이 새로고침 되지않고 element에서만 바뀌도록 설정
 		fetch(urlToFindId, { //해당 url로 객체정보 포함하여 통신요청
 			method: "post",
 			headers: headerObj,
-			body:"userinfo=" + JSON.stringify(infoObj)
+			body:JSON.stringify(infoObj)
 			
 		}).then(response => {
 			

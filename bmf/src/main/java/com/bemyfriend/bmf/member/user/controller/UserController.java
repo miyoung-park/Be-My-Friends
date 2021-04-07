@@ -1,6 +1,7 @@
 package com.bemyfriend.bmf.member.user.controller;
 
 
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bemyfriend.bmf.member.user.model.service.UserService;
@@ -34,6 +36,9 @@ public class UserController {
 	}
 	
 	
+	
+	
+	//join.jsp로 이동
 	@GetMapping("join")
 	public String join() { // 회원가입페이지 이동
 		return "member/user/join";
@@ -43,11 +48,13 @@ public class UserController {
 	
 	
 	
+	//해당 id의 존재유무 확인
 	@GetMapping("idcheck")
 	@ResponseBody //메소드 반환값 응답바디에 담아주기
 	public String idCheck(String userId) { //@RequestParam 생략 상태
+
 		if(userService.selectMemberById(userId) != null) {
-			return "fail";
+			return "fail"; 
 		}
 		return "available";
 	}
@@ -56,22 +63,16 @@ public class UserController {
 	
 	
 	
+	//회원가입 버튼 클릭시 mail 전송
 	@PostMapping("mailauth")
-	public String authenticateEmail(@ModelAttribute User persistInfo
-									,Errors errors
+	public String authenticateEmail(@ModelAttribute User persistUser
 									,HttpSession session
 									,Model model) {
 		
-		// 에러유무 파악
-		if(errors.hasErrors()) {
-			return "member/user/join";
-		}
+		session.setAttribute("persistUser", persistUser);
 		
-		String authPath = UUID.randomUUID().toString(); //유니크한 아이디 생성하기
-		session.setAttribute("authPath", authPath);
-		session.setAttribute("persistInfo", persistInfo);
+		userService.authenticateEmail(persistUser);
 		
-		userService.authenticateEmail(persistInfo, authPath);
 		
 		return null;
 	}
@@ -80,6 +81,7 @@ public class UserController {
 	
 	
 	
+	//전송된 메일이 확인되면 회원가입 진행완료
 	@GetMapping("joinimpl/{authPath}")
 	public String joinImpl() {
 		
@@ -93,10 +95,10 @@ public class UserController {
 	
 	
 	
-	
+	//로그인 페이지로 이동
 	@GetMapping("login")
 	public String login(String userId, String userPw) {
-		// 로그인화면으로 이동
+	
 		return "/member/user/login";
 	}
 	
@@ -105,8 +107,9 @@ public class UserController {
 	
 	
 	
+	//로그인 정보기반 로그인 완료
 	@PostMapping("loginimpl")
-	@ResponseBody								  //session에 저장해야 함
+	@ResponseBody		//form-json으로 넘겼기때문에 ! //session에 저장해야 함
 	public String loginmpl(@RequestBody User user, HttpSession session) {
 		// 로그인 완료되면 success/ fail 문자열 반환(=>ResponseBody에 찍힘)
 		// ResponseBody에 찍힌 문자열은 .then((text) => {
@@ -121,9 +124,19 @@ public class UserController {
 			session.setAttribute("userMember", userMember);
 			return "success";
 		}
+	
+	
+	
+	@GetMapping("logout")
+	public String logout(HttpSession session) {
+		
+		session.invalidate();
+		
+		return "/index";
+	}
 
 	
-
+	
 	
 
 }

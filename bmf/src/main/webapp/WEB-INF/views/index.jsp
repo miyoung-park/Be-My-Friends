@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="../../../../resources/css/flaticon.css">
     <link rel="stylesheet" href="../../../../resources/css/style.css">
   </head>
+  <!-- 팝업팝업 -->
+  <!-- <body onload = "javascript:popup()"> -->
   <body>
 	<!-- header bar -->
    		<div class="wrap">
@@ -38,6 +40,7 @@
 				    			<c:if test="${sessionScope.userMember == null and sessionScope.comMember == null}">
 										<a href="/member/user/login" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook">로그인</span></a>
 				    					<a href="/member/company/login" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram">기업로그인</span></a>
+				    					<a href="/member/join" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram">회원가입</span></a>
 								</c:if>
 								<c:if test="${sessionScope.userMember != null}">
 										<a href="/member/user/logout" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook">로그아웃</span></a>
@@ -45,8 +48,6 @@
 								<c:if test="${sessionScope.comMember != null}">
 				    					<a href="/member/company/logout" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram">로그아웃</span></a>
 								</c:if>
-								
-
 								<c:if test ="${sessionScope.comMember != null}">
 									<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram">광고관리</span></a>
 								</c:if>
@@ -83,9 +84,9 @@
 						    	<ul class="navbar-nav ml-auto">
 						        	<li class="nav-item"><a href="/index" class="nav-link">Home</a></li>
 						        	<li class="nav-item"><a href="/recruit" class="nav-link">채용정보</a></li>
-						        	<li class="nav-item"><a href="vet.html" class="nav-link">법률/매체</a></li>
-						        	<li class="nav-item"><a href="services.html" class="nav-link">커뮤니티</a></li>
-							        <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+						        	<li class="nav-item"><a href="/lawAndMedia" class="nav-link">법률/매체</a></li>
+						        	<li class="nav-item"><a href="/community/review/review" class="nav-link">커뮤니티</a></li>
+							        <li class="nav-item"><a href="/sign/signIndex" class="nav-link">수화를배워보자아</a></li>
 							        <li class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></li>
 							        
 							        <c:choose>
@@ -596,7 +597,7 @@
 								<li><span class="fa fa-check mr-2"></span>Free Supports</li>
 							</ul>
 
-							<a href="#" class="btn btn-primary d-block px-2 py-3">Get
+							<a class="btn btn-primary d-block px-2 py-3" onclick ="payment();">Get
 								Started</a>
 						</div>
 					</div>
@@ -616,7 +617,7 @@
 								<li><span class="fa fa-check mr-2"></span>Free Supports</li>
 							</ul>
 
-							<a href="#" class="btn btn-primary d-block px-2 py-3">Get
+							<a class="btn btn-primary d-block px-2 py-3" onclick ="payment();">Get
 								Started</a>
 						</div>
 					</div>
@@ -636,7 +637,7 @@
 								<li><span class="fa fa-check mr-2"></span>Free Supports</li>
 							</ul>
 
-							<a href="#" class="btn btn-primary d-block px-2 py-3">Get
+							<a class="btn btn-primary d-block px-2 py-3" onclick ="payment()">Get
 								Started</a>
 						</div>
 					</div>
@@ -1016,7 +1017,11 @@
   <script src="../../../../resources/js/jquery.magnific-popup.min.js"></script>
   <script src="../../../../resources/js/scrollax.min.js"></script>
   <script src="../../../../resources/js/main.js"></script>
-
+	
+<!-- whalee js -->
+<script src="../resources/js/whaleeTest.js"></script>
+<!-- 결제 모듈 js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
     
   </body>

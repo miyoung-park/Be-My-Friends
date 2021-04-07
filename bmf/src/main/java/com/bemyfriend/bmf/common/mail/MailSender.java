@@ -21,6 +21,7 @@ public class MailSender {
 		
  		private final JavaMailSender mail;
 	
+ 		
 		public MailSender(JavaMailSender mail) {
 			this.mail = mail;
 		}
@@ -39,7 +40,7 @@ public class MailSender {
 				msg.setFrom("qkraldud5020@naver.com");
 				msg.setRecipients(Message.RecipientType.TO,to);
 				msg.setSubject(subject);
-				msg.setContent(htmlText + "님 !", "text/html; charset=UTF-8");
+				msg.setContent(htmlText , "text/html; charset=UTF-8");
 			
 				mail.send(msg);
 			
