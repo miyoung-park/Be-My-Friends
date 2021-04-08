@@ -14,7 +14,7 @@ public interface UserService {
 	
 	User selectMemberById(String userId);
 	
-	void authenticateEmail(User persistUser);
+	void authenticateEmail(Map<String, String> persistUser);
 	
 	
 

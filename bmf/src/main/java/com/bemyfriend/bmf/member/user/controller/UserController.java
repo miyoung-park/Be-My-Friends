@@ -65,7 +65,7 @@ public class UserController {
 	
 	//회원가입 버튼 클릭시 mail 전송
 	@PostMapping("mailauth")
-	public String authenticateEmail(@ModelAttribute User persistUser
+	public String authenticateEmail(@RequestParam Map<String, String> persistUser
 									,HttpSession session
 									,Model model) {
 		

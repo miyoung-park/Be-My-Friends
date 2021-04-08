@@ -11,6 +11,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 
+import com.bemyfriend.bmf.common.code.ConfigCode;
+
 
 
 @Component
@@ -37,7 +39,7 @@ public class MailSender {
 			//  MimeMessage 여기에 우리가 이 값들을 세팅할 수 있는 setter 메소드들이 있다.
 			MimeMessage msg = mail.createMimeMessage();
 			try {
-				msg.setFrom("qkraldud5020@naver.com");
+				msg.setFrom(ConfigCode.EMAIL.desc);
 				msg.setRecipients(Message.RecipientType.TO,to);
 				msg.setSubject(subject);
 				msg.setContent(htmlText , "text/html; charset=UTF-8");
@@ -54,3 +56,6 @@ public class MailSender {
 		}
 	
 }
+
+
+
