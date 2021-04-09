@@ -17,17 +17,18 @@
 		if(userId.value){ // true일때
 			fetch("idcheck?userId=" + userId.value,{
 				method: "GET",
-				headers: headerObj,
+				headers: headerObj
 				
 			}).then(response => response.text()) // then해주면 응답(response)이 넘어옴, 바로 return
 			  .then((message)=>{ // message가 넘어올 것
+				 
 				if(message == 'available'){
 					idCheckFlg = true;
 					idCheck.innerHTML = '사용 가능한 아이디 입니다.';
 				} else {
 					idCheckFlg = false;
 					idCheck.innerHTML = '사용 불가능한 아이디 입니다.';
-					userId.value=" ";
+					userId.value="";
 				}				
 			  }).catch(error => {
 				 
@@ -90,7 +91,6 @@
 		
 		let headerObj = new Headers();
 		headerObj.append("content-type", "application/json"); /*json으로 받기 때문에 Controller에서 @RequestBody로 잡아주어야 함 */
-		console.dir(paramObj);
 	
 		fetch("loginimpl", { /* 해당 url로 아래의 객체를 포함하여 통신요청 */
 			method:"post",
@@ -125,13 +125,6 @@
 	}
 	
 	
-
-
-	let mypageError = ()=> {
-		alert("로그인 후 이용하실 수 있습니다.");
-		location.href="/main.do";
-	}
-
 	
 	
 	
@@ -181,7 +174,7 @@
 			let deleteUserObj = new Object();
 			console.dir(id.value);
 			deleteUserObj.userId = id.value;
-			let url ="/user/withdraw.do";
+			let url ="/user/withdraw";
 			
 			let headerObj = new Headers();
 			headerObj.append("content-type", "application/x-www-form-urlencoded");
@@ -211,121 +204,39 @@
 	}
 	
 	
-//User 정보 수정시 사용할 메소드
-	let modifyInfo= () => {
-		
-	    
-		
-		let memberObj = new Object();
-		memberObj.userId = id.value;
-		memberObj.userPw = pw.value;
-		memberObj.userName = username.value;
-		memberObj.userNick = nickname.value;
-		memberObj.userEmail = email.value;
-		memberObj.userBirth = birth.value;
-		memberObj.userPhone = phonenumber.value;
-		memberObj.userKg = kg_info.textContent;
-		console.dir(JSON.stringify(memberObj));
-		
-		//1. 비밀번호 조합확인
-		let password = pw.value;
-	    let regExp = /^(?!.*[ㄱ-힣])(?=.*\W)(?=.*\d)(?=.*[a-zA-Z])(?=.{8,})/;
-	     
-	    if(!(regExp.test(password))){
-	    	document.querySelector("#pw_confirm").style.display = 'flex';
-			document.querySelector("#pw_confirm").innerHTML = '비밀번호는 숫자,영문자,특수문자 조합의 8글자 이상이어야 합니다.';
-			pw.value = "";
-			checkpw.value= "";
-	    	document.querySelector('#modify_user_info').addEventListener('submit', (e) =>{
-	    		e.preventDefault(); //데이터전송 막기
-			})
-
-	      } else {
-	    	  let firstPw =  pw.value;
-			  let secondPw = checkpw.value;
-			  //2. 비밀번호 double check 메소드
-			  if(firstPw != secondPw){
-				  	document.querySelector("#pw_confirm").style.display = 'flex';
-					document.querySelector("#pw_confirm").innerHTML = '비밀번호가 일치하지 않습니다.';
-					checkpw.value= ""; //pw의 value값 비워주기
-					document.querySelector('#modify_user_info').addEventListener('submit', (e) =>{
-						e.preventDefault(); //데이터전송 막기
-					})
-				
-				} else {
-					// 3. 회원정보 수정
-					let url = "/user/modifyinfo.do";		
-					let headerObj = new Headers();
-					headerObj.append("content-type", "application/x-www-form-urlencoded");
-					
-					fetch(url,{
-						method:"post",
-						headers:headerObj,
-						body:"modifyinfo="+JSON.stringify(memberObj)
-						
-					}).then(response =>{
-						console.dir(response);
-						if(response.ok){
-							return response.text();
-						}
-						
-					}).then((text) =>{
-						console.dir(text);
-						if(text == 'success'){
-							alert('회원정보가 성공적으로 수정되었습니다.');
-							location.href ='/user/userprofile.do';
-							
-						}else {
-							alert('회원정보 수정에 실패하였습니다.');
-						}
-							
-					});
-				
-				}
-	      }
-	}
-
-//School 정보 수정시 사용할 메소드
-	let schoolModifyInfo = () =>{
-		let schoolModifyObj = new Object();
-		schoolModifyObj.kgId = kgId.value;
-		schoolModifyObj.kgName = kgName.value;
-		schoolModifyObj.kgAddress = kgAddress.value;
-		schoolModifyObj.kgTell = kgTell.value;
-		schoolModifyObj.kgEmail = kgEmail.value;
-		schoolModifyObj.kgOperateTime = kgOperateTime.value;
-		schoolModifyObj.kgNotice = kgNotice.value;
-		
-		
-		let url = "/school/modifyinfo.do";		
-		let headerObj = new Headers();
-		headerObj.append("content-type", "application/x-www-form-urlencoded");
-		
-		console.dir(JSON.stringify(schoolModifyObj));
-		fetch(url, {
-			method:"post",
-			headers:headerObj,
-			body:"schoolModifyInfo="+JSON.stringify(schoolModifyObj)
-		}).then(response =>{
-			if(response.ok){
-				return response.text();
-			} 
-			alert('유치원정보 수정중 오류발생');
+	
+	
+//User 정보 수정시 사용
+	
+	if(document.querySelector('.updateform') != null){
+		  document.querySelector('.updateform').addEventListener('submit',(e) => {			      
+			      
+			      let password = userPw.value;
+			      let regExp = /^(?!.*[ㄱ-힣])(?=.*\W)(?=.*\d)(?=.*[a-zA-Z])(?=.{8,})/;
 			
-		}).then((text) => {
-			if(text == 'fail'){
-				alert('유치원정보 업데이트 중 오류가 발생하였습니다.');
-			}else if(text =='success'){
-				alert('유치원정보가 성공적으로 업데이트 되었습니다.');
-				location.href= '/school/schoolprofile.do';
-			}else{
-				alert('유치원정보 업데이트 중 오류발생');
-			}
-		});
-		
-		
-		
-	}
-
-	
-	
+			      if(password == ''){
+			    	  e.preventDefault();
+				      pw_check.innerHTML = '비밀번호를 입력해주세요.';
+				      
+			      }else{
+			    	  
+				      if(!(regExp.test(password))){
+				         //form의 데이터 전송을 막음
+				         e.preventDefault();
+				         pw_confirm.innerHTML = '비밀번호는 숫자,영문자,특수문자 조합의 8글자 이상이어야 합니다.';
+				         userPw.value = '';
+				      } else {
+				    	  
+				    	  let firstPw = userPw.value;
+						  let secondPw = checkpw.value;
+						  //비밀번호 double check 메소드
+						  if(firstPw != secondPw){
+							
+								document.querySelector("#pw_confirm").innerHTML = '비밀번호가 맞지 않습니다.';
+								checkpw.value= ""; //pw의 value값 비워주기
+								e.preventDefault(); //데이터전송 막기
+							}
+				      }    
+			      }
+			 }); 
+		}

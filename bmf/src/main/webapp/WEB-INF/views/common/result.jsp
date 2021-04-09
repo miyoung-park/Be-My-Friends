@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 
 <body>
-	<h1>확인</h1>
+	
 	<script type="text/javascript">
 		let context = "${context}";
 		

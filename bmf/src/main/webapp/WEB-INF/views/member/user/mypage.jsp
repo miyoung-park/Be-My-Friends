@@ -88,19 +88,19 @@
 							        <li class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></li>
 							        
 							        <c:choose>
-										<c:when test ="${sessionScope.userMember != null}">
+										<c:when test ="${userMember != null}">
 											<li class="nav-item"><a href="/member/user/resume" class="nav-link">자료실</a></li>
 										</c:when>
-										<c:when test ="${sessionScope.comMember != null}">
+										<c:when test ="${comMember != null}">
 											<li class="nav-item"><a href="member/company/hire" class="nav-link">자료실</a></li>
 										</c:when>
 									</c:choose>
 							        
 							        <c:choose>
-										<c:when test ="${sessionScope.userMember != null}">
+										<c:when test ="${userMember != null}">
 											<li class="nav-item active"><a href="/member/user/mypage" class="nav-link">마이페이지</a></li>
 										</c:when>
-										<c:when test ="${sessionScope.comMember != null}">
+										<c:when test ="${comMember != null}">
 											<li class="nav-item active"><a href="/member/company/mypage" class="nav-link">마이페이지</a></li>
 										</c:when>
 									</c:choose>
@@ -129,7 +129,7 @@
         <div class="row no-gutters slider-text align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
           	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="/index">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Join <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-0 bread">Join</h1>
+            <h1 class="mb-0 bread">mypage</h1>
           </div>
         </div>
       </div>
@@ -139,7 +139,7 @@
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-md-6 text-center mb-5">
-						<h2 class="heading-section">개인회원 가입하기</h2>
+						<h2 class="heading-section">개인회원정보</h2>
 					</div>
 				</div>
 				<div class="row justify-content-center">
@@ -149,31 +149,26 @@
 								<div class="col-md-7-p">
 									<div class="contact-wrap w-100 p-md-5 p-4">
 					
-										<form:form modelAttribute="User" action="${context}/member/user/mailauth" method="POST" id="contactForm" name="contactForm" class="contactForm">
+										<form:form modelAttribute="User" action="${context}/member/user/updateinfo" method="POST" id="updateform" name="updateform" class="updateform">
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
-														<div>
-															<label class="label" id="check-group">아이디</label><span id="idCheck"></span>
-														</div>
-														<div class="idcheck-group">
-															<input type="text" class="form-control" name="userId" id="userId" >
-															<button type="button" onclick="idCheck()" class="btn btn-primary-p">확인</button>
-														</div>
+														<label class="label" id="check-group">아이디</label><span id="idCheck"></span>
+														<input type="text" value ="${userMember.userId}" class="form-control" name="userId" id="userId" readonly>
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label">이름</label>
-														<input type="text" class="form-control" name="userName" id="userName" >
+														<input type="text" class="form-control" name="userName" id="userName"  value ="${userMember.userName}">
 													</div>
 												</div>
 												
 												
 												<div class="col-md-6"> 
 													<div class="form-group">
-														<label class="label">비밀번호</label>
-														<input type="password" class="form-control" name="userPw" id="userPw" placeholder="비밀번호를 입력하세요.">
+														<label class="label" id="check-group">비밀번호</label><span id="pw_check"></span>
+														<input type="password" class="form-control" name="userPw" id="userPw" placeholder="비밀번호/변경할 비밀번호를 입력하세요.">
 													</div>
 												</div>
 												
@@ -186,31 +181,31 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" >전화번호</label>
-														<input type="tel" class="form-control" name="userTell" id="userTell" placeholder="숫자만 입력하세요." >
+														<input type="tel" class="form-control" name="userTell" id="userTell" value ="${userMember.userTell}" >
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" >이메일</label>
-														<input type="email" class="form-control" name="userMail" id="userMail" >
+														<input type="email" class="form-control" name="userMail" id="userMail"  value ="${userMember.userMail}">
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" >주소</label>
-														<input type="text" class="form-control" name="userAdd" id="userAdd" >
+														<input type="text" class="form-control" name="userAdd" id="userAdd" value ="${userMember.userAdd}">
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" >생년월일</label>
-														<input type="date" class="form-control" name="userBirth" id="userBirth" >
+														<input type="date" class="form-control" name="userBirth" id="userBirth" value ="${userMember.userBirth}">
 													</div>
 												</div>
 												
 												<div class="col-md-12">
 													<div class="form-group-log-p">
-														<button type="submit" class="btn btn-primary">회원가입</button>
+														<button type="submit" class="btn btn-primary" id="modifyInfo">회원정보 수정</button>
 													</div>
 												</div>
 											</div>
@@ -322,6 +317,7 @@
   <script src="../../../../resources/js/scrollax.min.js"></script>
   <script src="../../../../resources/js/main.js"></script>
   <script src="../../../../resources/js/user.js"></script> 
+
 
     
   </body>

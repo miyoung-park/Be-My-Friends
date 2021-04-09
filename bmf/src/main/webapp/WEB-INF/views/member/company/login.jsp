@@ -151,19 +151,19 @@
 											<div class="row">
 												<div class="col-md-12">
 													<div class="form-group">
-														<label class="label" for="userId">아이디</label>
+														<label class="label" id="userId" for="userId">아이디</label>
 														<input type="text" class="form-control" name="userId" id="userId" >
 													</div>
 												</div>
 												<div class="col-md-12">
 													<div class="form-group">
 														<label class="label" id="userPw" for="userPw" >비밀번호</label>
-														<input type ="text" class="form-control" name="userPw" id="userPw">
+														<input type ="password" class="form-control" name="userPw" id="userPw">
 													</div>
 												</div>
 												<div class="col-md-12">
 													<div class="form-group-log-p">
-														<button type="submit" onclick="login()"  class="btn btn-primary">로그인</button>
+														<button type="submit" onclick="login()" class="btn btn-primary">로그인</button>
 													</div>
 												</div>
 											</div>

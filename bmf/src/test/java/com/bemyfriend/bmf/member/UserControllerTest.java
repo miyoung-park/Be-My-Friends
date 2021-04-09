@@ -62,6 +62,19 @@ public class UserControllerTest {
 	}
 	
 	
+	@Test
+	public void joinImpl() throws Exception {
+		mockMvc.perform(post("/member/user/joinimpl")
+							.param("userId", "helloSpring")
+							.param("userPw", "1*al201210380")
+							.param("userMail", "qkraldud1529@gmail.com")
+							.param("userTell", "010-2456-0304")
+							.param("userAdd", "경기도 의정부시")
+							.param("userName", "testUser")
+							.param("userBirth", "2021-04-01")).andDo(print());
+	}
+	
+	
 	
 	@Test
 	public void login() throws Exception {
@@ -78,6 +91,19 @@ public class UserControllerTest {
 						.param("userPw", "12345")).andDo(print());
 	}
 	
+	
+	
+	@Test
+	public void updateUserInfo() throws Exception {
+		mockMvc.perform(post("/member/user/updateinfo")
+							.param("userId", "test")
+							.param("userPw", "123456789")
+							.param("userMail", "qkraldud1529@gmail.com")
+							.param("userTell", "010-2456-0304")
+							.param("userAdd", "경기도 의정부시")
+							.param("userName", "testUser")
+							.param("userBirth", "2021-04-01")).andDo(print());
+	}
 	
 	
 	

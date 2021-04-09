@@ -158,7 +158,7 @@
 												<div class="col-md-12">
 													<div class="form-group">
 														<label class="label">비밀번호</label>
-														<input type ="text" class="form-control" name="userPw" id="userPw">
+														<input type ="password" class="form-control" name="userPw" id="userPw">
 													</div>
 												</div>
 												<div class="col-md-12">

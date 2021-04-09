@@ -14,8 +14,11 @@ public interface UserService {
 	
 	User selectMemberById(String userId);
 	
-	void authenticateEmail(Map<String, String> persistUser);
+	void authenticateEmail(User persistUser, String authPath);
+
+	int insertUser(User persistUser);
 	
+	int updateUserInfo(User user);
 	
 
 }

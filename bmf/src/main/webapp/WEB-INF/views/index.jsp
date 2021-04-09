@@ -74,10 +74,10 @@
 						<div class="conheight">
 				     		<div class="collapse navbar-collapse" id="ftco-nav">
 							    <div class="wrapSearch">
-						            <div class="smKey">
-						                <input type="text" id="searchText" title="searchJob" name="stext" maxlength="50" style="background: none;">
+						            <form class="smKey searchTitle"  action="${context}/search/searchtitle" method="GET" id="searchTitle" name ="searchTitle">
+						                <input type="text" id="searchText" title="searchJob" name="searchText" maxlength="50" style="background: none;">
 						                <button type="submit"  class="searchBtn" id="common_search_btn"><i class="fas fa-search"></i></button>
-									</div>
+									</form>
 					    		</div>
 					   		</div>
 						    <div id="navwidth">
