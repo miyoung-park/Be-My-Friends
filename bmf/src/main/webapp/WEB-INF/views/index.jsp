@@ -75,7 +75,7 @@
 				     		<div class="collapse navbar-collapse" id="ftco-nav">
 							    <div class="wrapSearch">
 						            <form class="smKey searchTitle"  action="${context}/search/searchtitle" method="GET" id="searchTitle" name ="searchTitle">
-						                <input type="text" id="searchText" title="searchJob" name="searchText" maxlength="50" style="background: none;">
+						                <input type="search" id="searchText" title="searchJob" name="searchText" maxlength="50" style="background: none;">
 						                <button type="submit"  class="searchBtn" id="common_search_btn"><i class="fas fa-search"></i></button>
 									</form>
 					    		</div>
@@ -100,10 +100,10 @@
 							        
 							        <c:choose>
 										<c:when test ="${sessionScope.userMember != null}">
-											<li class="nav-item active"><a href="/member/user/mypage" class="nav-link">마이페이지</a></li>
+											<li class="nav-item"><a href="/member/user/mypage" class="nav-link">마이페이지</a></li>
 										</c:when>
 										<c:when test ="${sessionScope.comMember != null}">
-											<li class="nav-item active"><a href="/member/company/mypage" class="nav-link">마이페이지</a></li>
+											<li class="nav-item"><a href="/member/company/mypage" class="nav-link">마이페이지</a></li>
 										</c:when>
 									</c:choose>
 						        </ul>

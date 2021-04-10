@@ -39,5 +39,13 @@ public class UserRepositoryTest {
 		System.out.println(user);
 	}
 	
+	
+	@Test
+	public void withdrawUser() {
+		String userId = "aldud1529";
+		int result = userRepository.withdrawUser(userId);
+		System.out.println(result);
+	}
+	
 
 }

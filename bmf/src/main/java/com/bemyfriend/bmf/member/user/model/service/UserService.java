@@ -2,6 +2,8 @@ package com.bemyfriend.bmf.member.user.model.service;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import com.bemyfriend.bmf.member.user.model.vo.User;
 
 public interface UserService {
@@ -12,6 +14,8 @@ public interface UserService {
 	
 	User memberAuthenticate(User user);
 	
+	void userLogout(HttpSession session);
+	
 	User selectMemberById(String userId);
 	
 	void authenticateEmail(User persistUser, String authPath);
@@ -20,5 +24,6 @@ public interface UserService {
 	
 	int updateUserInfo(User user);
 	
+	int withdrawUser(String userId);
 
 }

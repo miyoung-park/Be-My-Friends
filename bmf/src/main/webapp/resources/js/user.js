@@ -108,6 +108,7 @@
 			console.dir(text);
 			if(text == 'fail'){
 				alert('아이디나 비밀번호를 확인하세요');
+				userPw.value="";
 				
 			}else if(text == 'success'){
 				alert('로그인 되었습니다.');
@@ -171,18 +172,14 @@
 		let result = confirm("정말 탈퇴하시겠습니까 ?");
 		
 		if(result){
-			let deleteUserObj = new Object();
-			console.dir(id.value);
-			deleteUserObj.userId = id.value;
-			let url ="/user/withdraw";
+			console.dir(userId.value);
 			
 			let headerObj = new Headers();
 			headerObj.append("content-type", "application/x-www-form-urlencoded");
 			
-			fetch(url, {
-				method:"post",
-				headers:headerObj,
-				body:"deleteUser="+JSON.stringify(deleteUserObj)
+			fetch("withdraw?userId="+userId.value, {
+				method:"GET",
+				headers:headerObj			
 				
 			}).then(response => {
 				console.dir(response);
@@ -193,7 +190,7 @@
 			}).then((text) => {
 				if(text == 'success'){
 					alert('회원탈퇴가 완료되었습니다.');
-					location.href = "/main.do";
+					location.href = "/index";
 				
 				}else{
 					alert('회원탈퇴 중 오류가 발생하였습니다. 다시 시도해주세요.');
@@ -204,7 +201,7 @@
 	}
 	
 	
-	
+
 	
 //User 정보 수정시 사용
 	
@@ -240,3 +237,58 @@
 			      }
 			 }); 
 		}
+	
+	
+
+	//User 주소 알림
+	  function addressInfo(e) {
+		  var 서울특별시 = ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
+		  var 경기도= ["1","2"];
+		  var 강원도= ["1","2"];
+		  var 인천광역시= ["1","2"];
+		  var 충청남도= ["1","2"];
+		  var 충청북도= ["1","2"];
+		  var 대전광역시= ["1","2"];
+		  var 세종특별시= ["1","2"];
+		  var 전라남도= ["1","2"];
+		  var 전라북도= ["1","2"];
+		  var 광주광역시= ["1","2"];
+		  var 경상남도= ["1","2"];
+		  var 경상북도= ["1","2"];
+		  var 부산광역시= ["1","2"];
+		  var 대구광역시= ["1","2"];
+		  var 울산광역시= ["1","2"];
+		  var 제주특별자치도= ["1","2"];
+		  
+
+		  let target = document.getElementById("twoadd");
+		  document.getElementById("twoadd").style.display="inline";
+		  
+		  
+		  if(e.value == "서울특별시") var d = 서울특별시;
+		  else if(e.value == "경기도") var d = 경기도;
+		  else if(e.value == "인천광역시") var d = 인천광역시;
+		  else if(e.value == "강원도") var d = 강원도;
+		  else if(e.value == "충청남도") var d = 충청남도;
+		  else if(e.value == "충청북도") var d = 충청북도;
+		  else if(e.value == "대전광역시") var d = 대전광역시;
+		  else if(e.value == "세종특별시") var d = 세종특별시;
+		  else if(e.value == "전라남도") var d = 전라남도;
+		  else if(e.value == "전라북도") var d = 전라북도;
+		  else if(e.value == "광주광역시") var d = 광주광역시;
+		  else if(e.value == "경상남도") var d = 경상남도;
+		  else if(e.value == "경상북도") var d = 경상북도;
+		  else if(e.value == "부산광역시") var d = 부산광역시;
+		  else if(e.value == "대구광역시") var d = 대구광역시;
+		  else if(e.value == "울산광역시") var d = 울산광역시;
+		  else if(e.value == "제주특별자치도") var d = 제주특별자치도;
+		  
+		  target.options.length = 0;
+		  
+		  for(x in d){
+			  var opt = document.createElement("option");
+			  opt.value= d[x];
+			  opt.innerHTML = d[x];
+			  target.appendChild(opt);
+		  }
+	  }

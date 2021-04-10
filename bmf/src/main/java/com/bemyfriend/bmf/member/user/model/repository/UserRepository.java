@@ -31,8 +31,8 @@ public interface UserRepository {
 	int insertUser(User persistUser);
 	
 	
-	//로그인하기
-	@Select("SELECT * FROM USERS WHERE USER_ID = #{userId} and USER_PW = #{userPw}")
+	//로그인하기 - 탈퇴회원 거르기
+	@Select("SELECT * FROM USERS WHERE USER_ID = #{userId} and USER_PW = #{userPw} and USER_ISLEAVE = 0")
 	User memberAuthenticate(User user);
 		
 	
@@ -47,7 +47,7 @@ public interface UserRepository {
 	
 	
 	//회원탈퇴하기
-	@Update("UPDATE USERS SET USER_ISLEAVE = '1' WHERE USER_ID = #{userId})")
+	@Update("UPDATE USERS SET USER_ISLEAVE = '1' WHERE USER_ID = #{userId}")
 	int withdrawUser(String userId);
 	
 	

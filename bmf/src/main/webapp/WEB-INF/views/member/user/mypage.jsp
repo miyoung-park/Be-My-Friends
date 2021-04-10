@@ -159,7 +159,7 @@
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label class="label">이름</label>
+														<label class="label" id="check-group">이름</label>
 														<input type="text" class="form-control" name="userName" id="userName"  value ="${userMember.userName}">
 													</div>
 												</div>
@@ -180,31 +180,32 @@
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label class="label" >전화번호</label>
+														<label class="label" id="check-group" >전화번호</label>
 														<input type="tel" class="form-control" name="userTell" id="userTell" value ="${userMember.userTell}" >
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label class="label" >이메일</label>
+														<label class="label"id="check-group" >이메일</label>
 														<input type="email" class="form-control" name="userMail" id="userMail"  value ="${userMember.userMail}">
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label class="label" >주소</label>
+														<label class="label"id="check-group" >주소</label>
 														<input type="text" class="form-control" name="userAdd" id="userAdd" value ="${userMember.userAdd}">
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label class="label" >생년월일</label>
+														<label class="label" id="check-group">생년월일</label>
 														<input type="date" class="form-control" name="userBirth" id="userBirth" value ="${userMember.userBirth}">
 													</div>
 												</div>
 												
 												<div class="col-md-12">
-													<div class="form-group-log-p">
+													<div class="form-group-log">
+														<button type="submit" class="delete-btn btn-delete" id="withdrawUser" onclick="withdraw()">회원탈퇴하기</button>
 														<button type="submit" class="btn btn-primary" id="modifyInfo">회원정보 수정</button>
 													</div>
 												</div>

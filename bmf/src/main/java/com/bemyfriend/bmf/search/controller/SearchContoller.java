@@ -28,9 +28,9 @@ public class SearchContoller {
 	public List<CompanyHire> searchTitle (@RequestParam String searchText
 											,HttpSession session){
 		
-		List<CompanyHire> searchResult = searchService.searchTitle(searchText);
-		
-		return searchResult;
+		List<CompanyHire> searchList= searchService.searchTitle(searchText);
+		System.out.println(searchList);
+		return null;
 	}
 	
 	

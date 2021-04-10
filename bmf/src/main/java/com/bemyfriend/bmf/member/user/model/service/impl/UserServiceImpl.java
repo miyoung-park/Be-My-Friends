@@ -5,6 +5,8 @@ package com.bemyfriend.bmf.member.user.model.service.impl;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
@@ -55,6 +57,16 @@ public class UserServiceImpl implements UserService {
 	
 		return userRepository.memberAuthenticate(user);
 	}
+	
+	
+	// 로그아웃 기능
+	@Override
+	public void userLogout(HttpSession session) {
+		
+		session.invalidate();
+		
+	}
+	
 	
 	
 
@@ -157,6 +169,17 @@ public class UserServiceImpl implements UserService {
 		
 		return userRepository.updateUserInfo(user);
 	}
+
+
+
+	@Override
+	public int withdrawUser(String userId) {
+		
+		return userRepository.withdrawUser(userId);
+	}
+
+
+
 	
 	
 	

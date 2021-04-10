@@ -162,8 +162,9 @@
 													</div>
 												</div>
 												<div class="col-md-12">
-													<div class="form-group-log-p">
+													<div class="form-group-log">
 														<button type="submit" onclick="login()"  class="btn btn-primary">로그인</button>
+														<button type="submit" onclick="location.href='/member/user/findinfo'"  class="btn btn-primary">아이디/비밀번호 찾기</button>
 													</div>
 												</div>
 											</div>

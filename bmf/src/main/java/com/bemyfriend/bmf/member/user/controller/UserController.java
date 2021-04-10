@@ -36,6 +36,8 @@ public class UserController {
 	private final UserService userService;
 	
 	
+	
+	
 	public UserController(UserService userService) {
 		this.userService = userService; //의존성 주입
 	}
@@ -70,12 +72,17 @@ public class UserController {
 	
 	//회원가입 버튼 클릭시 mail 전송
 	@PostMapping("mailauth")
-	public String authenticateEmail(@ModelAttribute User persistUser
+	public String authenticateEmail(User persistUser
 									,HttpSession session
 									,Model model) {
+		
+		String userAdd = persistUser.getUserAdd() + " " +persistUser.getTwoadd();
+		persistUser.setUserAdd(userAdd);
+		System.out.println(userAdd);
 		String authPath = UUID.randomUUID().toString(); //유니크한 아이디 생성
 		session.setAttribute("authPath", authPath);
 		session.setAttribute("persistUser", persistUser);
+		
 		
 		userService.authenticateEmail(persistUser, authPath);
 		model.addAttribute("alertMsg", "이메일이 발송되었습니다.");
@@ -103,7 +110,7 @@ public class UserController {
 			throw new ToAlertException(ErrorCode.AUTH02);
 		}
 		
-		
+
 		userService.insertUser(persistUser);
 		session.removeAttribute("persistUser");
 		
@@ -113,6 +120,28 @@ public class UserController {
 		
 	}
 	
+	
+	@GetMapping("findinfo")
+	public String findInfo() {
+		
+		return "/member/user/findinfo";
+		
+	}
+	
+	//회원 아이디 찾기
+	@GetMapping("finduserid")
+	public String findUserId() {
+		
+		return null;
+	}
+	
+	
+	//회원 비밀번호 찾기
+	@GetMapping("finduserpw")
+	public String findUserPw() {
+		
+		return null;
+	}	
 	
 	
 	
@@ -141,13 +170,15 @@ public class UserController {
 		// 이 형태로 fatch를 이용해 꺼내게 되는 것
 		User userMember = userService.memberAuthenticate(user);
 		
-		if(userMember == null) { // 없는 회원이라면
+		 // 없는 회원이라면
+		if(userMember == null) {
 			return "fail";
 	
-		}
+		}else { //로그인 성공시
 			session.setAttribute("userMember", userMember);
 			return "success";
 		}
+	}
 	
 	
 	
@@ -155,8 +186,7 @@ public class UserController {
 	//로그아웃하기
 	@GetMapping("logout")
 	public String logout(HttpSession session) {
-		
-		session.invalidate();
+		userService.userLogout(session);
 		
 		return "/index";
 	}
@@ -202,9 +232,25 @@ public class UserController {
 		
 		
 	}
-
 	
-	
+	//회원탈퇴하기
+	@GetMapping("withdraw")	
+	@ResponseBody				//생략가능, 파라미터값과 	변수가 동일하기에.
+	public String withdrawUser(@RequestParam String userId
+								,HttpSession session
+								,Model model) {
+			System.out.println(userId);
+		int result = userService.withdrawUser(userId);
+		
+		if(result > 0) {
+			//탈퇴 성공시 - 세션 삭제 및  index로 이동
+			userService.userLogout(session);
+			return "success";
+		}
+			//탈퇴 실패시
+			return "fail";
+		
+	}
 	
 
 }

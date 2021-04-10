@@ -10010,12 +10010,13 @@ span#idCheck{
   font-size: 12px;
   font-weight: 600; }
 
-.updateForm .form-control {
+
+.updateform .form-control {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 0; }
 
-.updateForm .form-control {
+.updateform .form-control {
   height: 36px;
   background: #fff;
   color: rgba(0, 0, 0, 0.5);
@@ -10024,22 +10025,22 @@ span#idCheck{
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
-  .updateForm .form-control::-webkit-input-placeholder {
+  .updateform .form-control::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
     color: rgba(0, 0, 0, 0.5) !important; }
-  .updateForm .form-control::-moz-placeholder {
+  .updateform .form-control::-moz-placeholder {
     /* Firefox 19+ */
     color: rgba(0, 0, 0, 0.5) !important; }
-  .updateForm .form-control:-ms-input-placeholder {
+  .updateform .form-control:-ms-input-placeholder {
     /* IE 0+ */
     color: rgba(0, 0, 0, 0.5) !important; }
-  .updateForm .form-control:-moz-placeholder {
+  .updateform .form-control:-moz-placeholder {
     /* Firefox 18- */
     color: rgba(0, 0, 0, 0.5) !important; }
-  .updateForm .form-control:focus, .updateForm .form-control:active {
+  .updateform .form-control:focus, .updateform .form-control:active {
     border-color: #00bd56 !important; }
 
-.updateForm textarea.form-control {
+.updateform textarea.form-control {
   height: inherit !important; }
 
 #pw_confirm{
@@ -10050,6 +10051,24 @@ span#idCheck{
 #pw_check{
 	font-size: smaller;
     color: crimson;
+}
+
+.delete-btn {
+    height: 30px;
+    cursor: pointer;
+    border-radius: 4px;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.delete-btn.btn-delete {
+    background: crimson;
+    border: 1px solid crimson;
+    color: #fff;
 }
 
 
