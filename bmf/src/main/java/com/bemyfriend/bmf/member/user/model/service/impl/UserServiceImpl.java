@@ -54,7 +54,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User memberAuthenticate(User user) {
 		
-	
+		System.out.println(userRepository.memberAuthenticate(user));
+		
 		return userRepository.memberAuthenticate(user);
 	}
 	

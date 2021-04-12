@@ -42,7 +42,7 @@ public interface UserRepository {
 	
 	
 	//비밀번호 찾기
-	@Select("SELECT * FROM USERS WHERE USER_ID = #{user_id} and USER_TELL = #{userTell}")
+	@Select("SELECT * FROM USERS WHERE USER_ID = #{userId} and USER_TELL = #{userTell}")
 	int selectUserForFindPw(String userId, String userTell);
 	
 	

@@ -169,7 +169,7 @@ public class UserController {
 		// ResponseBody에 찍힌 문자열은 .then((text) => {
 		// 이 형태로 fatch를 이용해 꺼내게 되는 것
 		User userMember = userService.memberAuthenticate(user);
-		
+		System.out.println(user);
 		 // 없는 회원이라면
 		if(userMember == null) {
 			return "fail";
