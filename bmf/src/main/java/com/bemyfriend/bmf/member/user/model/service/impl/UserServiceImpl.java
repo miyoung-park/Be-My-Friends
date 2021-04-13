@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -33,6 +35,8 @@ public class UserServiceImpl implements UserService {
 	private MailSender mail;
 	@Autowired
 	private RestTemplate http;
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 
 	
 	@Bean //RestTemplate Bean 생성오류로 직접 Bean으로 생성
@@ -40,6 +44,11 @@ public class UserServiceImpl implements UserService {
 	    return new RestTemplate();
 	}
 	
+	@Bean
+	public BCryptPasswordEncoder encoder(){
+	  return new BCryptPasswordEncoder();
+	}
+
 	
 	
 	public UserServiceImpl(UserRepository userRepository) {
@@ -48,38 +57,16 @@ public class UserServiceImpl implements UserService {
 	 }
 	
 	
-	
-	
-	
-	@Override
-	public User memberAuthenticate(User user) {
-		
-		System.out.println(userRepository.memberAuthenticate(user));
-		
-		return userRepository.memberAuthenticate(user);
-	}
-	
-	
-	// 로그아웃 기능
-	@Override
-	public void userLogout(HttpSession session) {
-		
-		session.invalidate();
-		
-	}
-	
-	
-	
-
-	@Override //idCheck
+	//idCheck
+	@Override 
 	public User selectMemberById(String userId) {
 		
 		return userRepository.selectMemberById(userId);
 	}
 
 
-	
-	@Override
+	//회원가입 - mail 보내기
+	@Override 
 	public void authenticateEmail(User persistUser, String authPath) {
 		
 		
@@ -111,8 +98,6 @@ public class UserServiceImpl implements UserService {
 		// (RequestEntity, 원하는 Response 타입)
 		ResponseEntity<String> response = http.exchange(request, String.class);
 		String message = response.getBody();
-		System.out.println(message);
-		
 		
 		mail.send(persistUser.getUserMail(), "회원가입을 축하합니다.", message);
 		
@@ -121,66 +106,77 @@ public class UserServiceImpl implements UserService {
 
 	 
 
-	/*
-	
-	 @Override
-	public void authenticateEmail(Map<String, String> persistUser) {
-		
-		
-		persistUser.put("mail-template", "temp_join");
-		
-		RequestEntity<Map<String, String>> request = RequestEntity
-												.post(ConfigCode.DOMAIN+"/mail")
-												.body(persistUser); //body에 담을 타입과 반환될 RequestEntity의 제네릭 타입이 일치해야함.
-		
-		// Content-type을 설정해주지 않으면 application/json 으로 넘어가기 떄문에
-		// RequestParam으로 못 받게 되기 떄문에 이 부분에 대해서 설정해주어야 함.
-		 
-		//템플릿에 보내줘야 할 값 : userId
-		// (RequestEntity, 원하는 Response 타입)
-		ResponseEntity<String> response = http.exchange(request, String.class);
-		String message = response.getBody();
-		System.out.println(message);
-		
-		
-		mail.send(persistUser.getUserId(), "회원가입을 축하합니다.", message);
-		
-		
-	}
-	 
-	 
-	*/
-	
-	
-
-	@Override
+	// 회원가입 완료
+	@Override 
 	public int insertUser(User persistUser) {
 		
 		//set된 비밀번호를 받아서 encode한 다음에 인코딩된 password를 insert!
-		
+		persistUser.setUserPw(encoder.encode(persistUser.getUserPw()));
 		return userRepository.insertUser(persistUser);
 		
 	}
 
+	
+	// 로그인 기능
+	@Override
+	public User memberAuthenticate(User user) {
+		
+		User authInfo = userRepository.memberAuthenticate(user.getUserId());
 
-
+		// 만약 해당되는 유저가 없거나, 요청값으로 넘어온 비밀번호와 인코딩된 비밀번호가 맞지 않는다면 null값 리턴 !
+		if( authInfo == null ||	!encoder.matches(user.getUserPw(), authInfo.getUserPw())) {
+			
+			return null;
+		}
+	
+		return authInfo;
+	}
+	
+	
+	// 로그아웃 기능
+	@Override
+	public void userLogout(HttpSession session) {
+		
+		session.invalidate();
+		
+	}
+	
+	
+	// 회원정보 업데이트
 	@Override
 	public int updateUserInfo(User user) {
 		
-		
+		user.setUserPw(encoder.encode(user.getUserPw()));
 		return userRepository.updateUserInfo(user);
 	}
+	
+	
+	
 
-
-
+	// 회원 탈퇴하기
 	@Override
 	public int withdrawUser(String userId) {
 		
 		return userRepository.withdrawUser(userId);
 	}
 
+	
+	// 회원 아이디 찾기
+	@Override
+	public String findUserId(String userName, String userTell) {
+		
+		return userRepository.selectUserForFindId(userName, userTell);
+	}
 
+	
+	// 회원 비밀번호 찾기 - 재세팅
+	@Override
+	public User findUserPw(String userId, String userMail) {
+		
+		return userRepository.selectUserForFindPw(userId, userMail);
+	}
 
+	
 	
 	
 	

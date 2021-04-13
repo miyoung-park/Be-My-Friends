@@ -35,8 +35,17 @@
 	</beans:bean>
 	
 	
+	<!-- Password Encoder사용을 위한 빈 등록 -->
+	<beans:bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></beans:bean>
 	
 	
+	<interceptors>
+		<interceptor>
+			<!-- url패턴 -->
+			<mapping path="/**"/>
+			<beans:bean class="com.bemyfriend.bmf.common.interceptor.AuthInterceptor"/>
+		</interceptor>
+	</interceptors>
 	
 	<context:component-scan base-package="com.bemyfriend.bmf" />
 	

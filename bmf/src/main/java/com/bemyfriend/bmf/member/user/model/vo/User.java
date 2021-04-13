@@ -88,23 +88,21 @@ public class User {
 	}
 
 
-
-
 	public void setUserAdd(String userAdd) {
 		this.userAdd = userAdd;
 	}
 
+	
 	
 	public String getTwoadd() {
 		return twoadd;
 	}
 
 
+
 	public void setTwoadd(String twoadd) {
 		this.twoadd = twoadd;
 	}
-
-
 
 
 	public String getUserTell() {

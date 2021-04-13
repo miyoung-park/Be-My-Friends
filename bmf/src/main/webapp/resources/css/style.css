@@ -9842,7 +9842,7 @@ textarea.form-control {
 
 
 .logo_space {
-   width: 25%;
+   width: 27%;
     margin: auto;
     display: flex;
     justify-content: space-around;
@@ -9904,7 +9904,7 @@ div#ftco-nav {
 
 
  /* miyoung */
- 
+
 
  
  .col-md-7-p {
@@ -9961,6 +9961,12 @@ div#ftco-nav {
     font-size: 0.5px;
 }
 
+.findpw{
+	background: slateBlue;
+    border: 1px solid slateBlue;
+    color: #fff;
+}
+
 .btn-primary-p:hover {
     color: #fff;
     background-color: #0069d9;
@@ -10003,6 +10009,15 @@ span#idCheck{
 	font-size: smaller;
     color: crimson;
 }
+.id_check{
+	font-size: smaller;
+    color: crimson;
+}
+.pw_check{
+	font-size: smaller;
+    color: crimson;
+}
+
 
 .updateForm .label {
   color: #00bd56 !important;
@@ -10070,6 +10085,95 @@ span#idCheck{
     border: 1px solid crimson;
     color: #fff;
 }
+
+.login_btn_form div {
+    display: contents;
+    justify-content: center;
+
+}
+
+.login_btn_form {
+    display: flex;
+    flex-direction: column;
+    margin : auto;
+}
+
+.btn-findinfo{
+	margin-top: 30px;
+	background: darkslateblue;
+    border: 1px solid darkslateblue;
+    color: #fff;
+}
+
+.content-write{
+   
+    width: 100%;
+    height: 265px;
+    padding: 12px 14px 0 14px;
+    resize: none;
+   
+}
+
+.content-title{
+	width: 100%;
+    border: none;
+    border-bottom: 1px solid;
+    color: gray;
+}
+
+.resume-container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto; }
+  @media (min-width: 576px) {
+    .resume-container {
+      max-width: 540px; } }
+  @media (min-width: 768px) {
+    .resume-container {
+      max-width: 720px; } }
+  @media (min-width: 992px) {
+    .resume-container {
+      max-width: 960px; } }
+  @media (min-width: 1200px) {
+    .resume-container {
+      max-width: 1000px; } }
+
+.resume-category{
+	
+	width:100%;
+	text-align: center;
+}
+.empty_space{
+	height: 80px;
+	width: 100%;
+	
+}
+
+
+ div#findInfo {
+    display: flex;
+    justify-content: space-around;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.move_btn_form{
+	display: flex;
+}
+
+.find-result{
+	text-align: center;
+}
+
+.col-md-6.move_btn {
+    justify-content: center;
+    display: flex;
+    margin-top: 30px;
+}
+
 
 
  /* Lee */

@@ -24,6 +24,7 @@
   <body>
 
    		<!-- header bar -->
+   		<!-- header bar -->
    		<div class="wrap">
 			<div class="container">
 				<div class="row">
@@ -36,9 +37,10 @@
 					<div class="col-md-6 d-flex justify-content-md-end">
 						<div class="social-media">
 				    		<p class="mb-0 d-flex">
-				    			<c:if test="${sessionScope.userMember == null and sessionScope.comMember == null}">
+				    			<c:if test="${empty sessionScope.userMember and empty sessionScope.comMember}">
 										<a href="/member/user/login" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook">로그인</span></a>
 				    					<a href="/member/company/login" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram">기업로그인</span></a>
+				    					<a href="/member/join" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram">회원가입</span></a>
 								</c:if>
 								<c:if test="${sessionScope.userMember != null}">
 										<a href="/member/user/logout" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook">로그아웃</span></a>
@@ -128,8 +130,8 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-end">
           <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="/index">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Join <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-0 bread">mypage</h1>
+          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="/index">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Mypage <i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-0 bread">Mypage</h1>
           </div>
         </div>
       </div>

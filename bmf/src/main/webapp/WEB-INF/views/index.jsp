@@ -37,7 +37,7 @@
 					<div class="col-md-6 d-flex justify-content-md-end">
 						<div class="social-media">
 				    		<p class="mb-0 d-flex">
-				    			<c:if test="${sessionScope.userMember == null and sessionScope.comMember == null}">
+				    			<c:if test="${empty sessionScope.userMember and empty sessionScope.comMember}">
 										<a href="/member/user/login" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook">로그인</span></a>
 				    					<a href="/member/company/login" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram">기업로그인</span></a>
 				    					<a href="/member/join" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram">회원가입</span></a>
@@ -91,10 +91,10 @@
 							        
 							        <c:choose>
 										<c:when test ="${sessionScope.userMember != null}">
-											<li class="nav-item"><a href="/member/user/resume" class="nav-link">자료실</a></li>
+											<li class="nav-item"><a href="/member/user/resume/list" class="nav-link">자료실</a></li>
 										</c:when>
 										<c:when test ="${sessionScope.comMember != null}">
-											<li class="nav-item"><a href="member/company/hire" class="nav-link">자료실</a></li>
+											<li class="nav-item"><a href="member/company/hire/list" class="nav-link">자료실</a></li>
 										</c:when>
 									</c:choose>
 							        

@@ -22,9 +22,7 @@
     <link rel="stylesheet" href="../../../../resources/css/style.css">
   </head>
   <body>
-
-   		<!-- header bar -->
-   		<!-- header bar -->
+	<!-- header bar -->
    		<div class="wrap">
 			<div class="container">
 				<div class="row">
@@ -84,9 +82,9 @@
 						    	<ul class="navbar-nav ml-auto">
 						        	<li class="nav-item"><a href="/index" class="nav-link">Home</a></li>
 						        	<li class="nav-item"><a href="/recruit" class="nav-link">채용정보</a></li>
-						        	<li class="nav-item"><a href="/lawAndMedia" class="nav-link">법률/매체</a></li>
-						        	<li class="nav-item"><a href="/community/review/review" class="nav-link">커뮤니티</a></li>
-							        <li class="nav-item"><a href="/sign/signIndex" class="nav-link">수화를배워보자아</a></li>
+						        	<li class="nav-item"><a href="vet.html" class="nav-link">법률/매체</a></li>
+						        	<li class="nav-item"><a href="services.html" class="nav-link">커뮤니티</a></li>
+							        <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
 							        <li class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></li>
 							        
 							        <c:choose>
@@ -125,133 +123,52 @@
     
     
     
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('../../../../resources/images/bg_15.jpg');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-end">
-          <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="/index">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Join <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-0 bread">Join</h1>
-          </div>
-        </div>
-      </div>
-    </section>
-
+  
     <section class="ftco-section bg-light">
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-md-6 text-center mb-5">
-						<h2 class="heading-section">개인회원 가입하기</h2>
+						<h2 class="heading-section">회원정보 찾기 결과</h2>
 					</div>
 				</div>
 				<div class="row justify-content-center">
 					<div class="col-md-12">
 						<div class="wrapper">
-							<div class="row no-gutters">
-								<div class="col-md-7-p">
+							<div class="row no-gutters-log">
+								<div class="col-md-7-p-log">
 									<div class="contact-wrap w-100 p-md-5 p-4">
-										<!-- modelAttribute 를 지정, user안에 들어있는 errors 를 사용할 수 있음 -->
-										<form:form modelAttribute="user" action="${context}/member/user/mailauth" method="POST" id="contactForm" name="contactForm" class="contactForm">
+					
+										<div id="contactForm" class="contactForm">
 											<div class="row">
-												<div class="col-md-6">
-													<div class="form-group">
-														<div>
-															<label class="label" id="check-group">아이디</label><span id="idCheck" class="id_check"></span>
-															<!-- path : rejectValue의 field 매개변수 -->
-															<form:errors path="userId" cssClass="id_check"></form:errors>
-														</div>
-														<div class="idcheck-group">
-															<input type="text" class="form-control" name="userId" id="userId" required="required">
-															<button type="button" onclick="idCheck()" class="btn btn-primary-p">확인</button>
-														</div>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label class="label">이름</label>
-														<input type="text" class="form-control" name="userName" id="userName" required="required" >
-													</div>
-												</div>
-												
-												
-												<div class="col-md-6"> 
-													<div class="form-group">
-														<label class="label">비밀번호</label>
-														<input type="password" class="form-control" name="userPw" id="userPw" placeholder="비밀번호를 입력하세요." required="required">
-													</div>
-												</div>
-												
-												<div class="col-md-6"> 
-													<div class="form-group">
-														<label class="label" id="check-group">비밀번호 확인</label>
-														<span id="pw_confirm" class="pw_check"></span>
-														<form:errors path="userPw" cssClass="pw_check"></form:errors>
-														<input type="password" class="form-control" id="checkpw" placeholder="비밀번호를 다시 입력하세요." > <!-- 확인비번 전송X -->
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label class="label" >전화번호</label>
-														<input type="tel" class="form-control" name="userTell" id="userTell" placeholder="숫자만 입력하세요." required="required">
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label class="label" >이메일</label>
-														<input type="email" class="form-control" name="userMail" id="userMail" required="required">
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label class="label" >주소</label>
-														<select onchange="addressInfo(this)" class="form-control" name="userAdd" id="userAdd" required="required" >
-															<option value="">지역을 선택하세요</option>
-															<option value="서울특별시">서울특별시</option>
-															<option value="강원도">강원도</option>
-															<option value="경기도">경기도</option>
-															<option value="인천광역시">인천광역시</option>
-															<option value="충청남도">충청남도</option>
-															<option value="충청북도">충청북도</option>
-															<option value="대전광역시">대전광역시</option>
-															<option value="세종특별시">세종특별시</option>
-															<option value="전라남도">전라남도</option>
-															<option value="전라북도">전라북도</option>
-															<option value="광주광역시">광주광역시</option>
-															<option value="경상남도">경상남도</option>
-															<option value="경상북도">경상북도</option>
-															<option value="부산광역시">부산광역시</option>
-															<option value="대구광역시">대구광역시</option>
-															<option value="울산광역시">울산광역시</option>
-															<option value="제주특별자치도">제주특별자치도</option>
-														</select>
-														<select class="form-control" name="twoadd" id="twoadd" required="required" style="display: none">
-														</select>
+												<div class="col-md-12">
+													<div class="form-group find-result" >
+													<c:if test="${!empty userId}">
+														<span>당신의 아이디는 ${userId} 입니다.</span>
+													</c:if>
+													<c:if test="${!empty userPw}">
+														<span>당신의 새로운 비밀번호는 ${userPw} 입니다.</span><br>
+														<span>회원정보수정 페이지에서 비밀번호를 변경하세요.</span>
+													</c:if>
 														
 													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label class="label" >생년월일</label>
-														<input type="date" class="form-control" name="userBirth" id="userBirth" required="required">
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label class="label" >이미지 사진</label>
-														<input type="file" class="form-control" name="userPhoto" id="userPhoto" >
-													</div>
-												</div>
-												
-												<div class="col-md-12">
-													<div class="form-group-log-p">
-														<button type="submit" class="btn btn-primary">회원가입</button>
-													</div>
-												</div>
+												</div>												
 											</div>
-										</form:form>
+										</div>
 									</div>
+									
+									<div class="row move_btn_form">
+										<div class="col-md-6 move_btn">
+											<button type="submit" onclick="location.href='/member/user/login'"  class="btn btn-primary">로그인 하기</button>
+										</div>
+										<c:if test="${!empty userId}">
+											<div class="col-md-6 move_btn">
+											<button type="submit" onclick="location.href='/member/user/findinfo'"  class="btn btn-primary">비밀번호 찾기</button>
+										</div>
+										</c:if>
+										
+									</div>
+									
 								</div>
-								
 							</div>
 						</div>
 					</div>
@@ -260,13 +177,13 @@
 		</section>
 
 		
-
+<!-- footer -->
     <footer class="footer">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
 						<h2 class="footer-heading">Be my Friends</h2>
-						<p>사회로의 첫걸음, [ Be My Friends ] 와 함께하세요.</p>
+						<p>사회로의 첫걸음, [ Be My Freinds ] 와 함께하세요.</p>
 						<ul class="ftco-footer-social p-0">
               <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fa fa-twitter"></span></a></li>
               <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
@@ -336,11 +253,10 @@
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-
-
-	
-
+  
+  
+  
+  
   <script src="../../../../resources/js/jquery.min.js"></script>
   <script src="../../../../resources/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="../../../../resources/js/popper.min.js"></script>
@@ -355,8 +271,9 @@
   <script src="../../../../resources/js/jquery.magnific-popup.min.js"></script>
   <script src="../../../../resources/js/scrollax.min.js"></script>
   <script src="../../../../resources/js/main.js"></script>
-  <script src="../../../../resources/js/user.js"></script> 
- 
+  <script src="../../../../resources/js/user.js"></script>
+
+
     
   </body>
 </html>

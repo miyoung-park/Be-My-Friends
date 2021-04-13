@@ -35,18 +35,20 @@
 					<div class="col-md-6 d-flex justify-content-md-end">
 						<div class="social-media">
 				    		<p class="mb-0 d-flex">
-				    			<c:choose>
-									<c:when test ="${sessionScope.userMember == null || sessionScope.comMember == null}">
+				    			<c:if test="${empty sessionScope.userMember and empty sessionScope.comMember}">
 										<a href="/member/user/login" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook">로그인</span></a>
 				    					<a href="/member/company/login" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram">기업로그인</span></a>
-									</c:when>
-								</c:choose>
-				    			
-				    			<c:choose>
-									<c:when test ="${sessionScope.comMember != null}">
-										<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram">광고관리</span></a>
-									</c:when>
-								</c:choose>
+				    					<a href="/member/join" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram">회원가입</span></a>
+								</c:if>
+								<c:if test="${sessionScope.userMember != null}">
+										<a href="/member/user/logout" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook">로그아웃</span></a>
+								</c:if>
+								<c:if test="${sessionScope.comMember != null}">
+				    					<a href="/member/company/logout" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram">로그아웃</span></a>
+								</c:if>
+								<c:if test ="${sessionScope.comMember != null}">
+									<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram">광고관리</span></a>
+								</c:if>
 				    			
 				    		</p>
 		        		</div>
@@ -112,26 +114,7 @@
 		
     <!-- END nav -->
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('../../../../resources/images/bg_15.jpg');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-end">
-          <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="/index">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Login <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-0 bread">Login</h1>
-          </div>
-        </div>
-      </div>
-    </section>
+  
 
     <section class="ftco-section bg-light">
 			<div class="container">
@@ -145,24 +128,85 @@
 						<div class="wrapper">
 							<div class="row no-gutters-log">
 								<div class="col-md-7-p-log">
-									<div class="contact-wrap w-100 p-md-5 p-4">
-					
-										<div id="contactForm" class="contactForm">
-													<div class="form-group-log">
-														<button type="button" onclick="location.href='/member/user/finduserid'"  class="btn btn-primary">아이디 찾기</button>
-														<button type="button" onclick="location.href='/member/user/finduserpw'" class="btn btn-primary">비밀번호 찾기</button>
-													</div>
+									<div class="contact-wrap w-100 p-md-7 p-4">
+									
+									
+									        <%-- radio 버튼으로 checked시 display 바뀌게 설정 --%>
+											<div class="col-md-12" id="findInfo">
+												<div class="form-group">
+													<label class="label">아이디 찾기</label>
+													<input type="radio"  name="findInfo" id="findId" value="findId" onclick='getFindId()' checked="checked" >
+												</div>
+												<div class="form-group">
+													<label class="label">비밀번호 찾기</label>
+													<input type ="radio"  name="findInfo" id="findPw" value="findPw" onclick='getFindPw()'>
 												</div>
 											</div>
+											<hr>
+									
+											
+											<%-- 아이디 찾기시 --%>	
+											<form id="findIdForm" method="GET" action="${context}/member/user/finduserid" name ="findIdForm" class="contactForm" >
+												<div class="row">
+													<div class="col-md-12">
+														<div class="form-group">
+															<label class="label">이름</label>
+															<input type="text" class="form-control" name="userName" id="userName" placeholder="이름을 입력하세요." >
+														</div>
+													</div>
+													<div class="col-md-12">
+														<div class="form-group">
+															<label class="label">전화번호</label>
+															<input type ="text" class="form-control" name="userTell" id="userTell" placeholder="전화번호를 입력하세요.">
+														</div>
+													</div>
+													<div class="login_btn_form">
+														<div class="col-md-12">
+															<div class="form-group-log">
+																<button type="submit" class="btn btn-primary">아이디 찾기</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</form>
+									
+										
+										<%-- 비밀번호 찾기시 --%>
+											<form id="findPwForm" method="GET" action="${context}/member/user/finduserpw" name ="findPwForm" class="contactForm"  style="display:none;" ">
+												<div class="row">
+													<div class="col-md-12">
+														<div class="form-group">
+															<label class="label">아이디</label>
+															<input type="text" class="form-control" name="userId" id="userId"placeholder="아이디를 입력하세요." >
+														</div>
+													</div>
+													<div class="col-md-12">
+														<div class="form-group">
+															<label class="label">이메일</label>
+															<input type ="email" class="form-control" name="userMail" id="userMail" placeholder="이메일을 입력하세요.">
+														</div>
+													</div>
+													<div class="login_btn_form">
+														<div class="col-md-12">
+															<div class="form-group-log">
+																<button type="submit" class="btn findpw">비밀번호 찾기</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</form>
+										
+											
+											
+											
+											
 										</div>
 									</div>
 								</div>
-								
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 		</section>
 
 		
@@ -261,6 +305,23 @@
   <script src="../../../../resources/js/scrollax.min.js"></script>
   <script src="../../../../resources/js/main.js"></script>
   <script src="../../../../resources/js/user.js"></script>
+  <script>
+	function getFindId(){
+
+		document.getElementById('findPwForm').style.display="none";
+		document.getElementById('findIdForm').style.display="inline";
+		
+	} 
+	
+function getFindPw(){
+	
+		document.getElementById('findPwForm').style.display="inline";
+		document.getElementById('findIdForm').style.display="none";
+	} 
+	
+	
+	
+</script>
 
 
     

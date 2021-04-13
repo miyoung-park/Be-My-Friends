@@ -86,7 +86,7 @@
 //member 로그인시 사용할 메소드
 	let login = () => {
 		let paramObj = new Object();
-		paramObj.userId = userId.value;
+		paramObj.userId = userId.value; //VO의 변수명이랑 같아야 함
 		paramObj.userPw = userPw.value;
 		
 		let headerObj = new Headers();
@@ -95,7 +95,7 @@
 		fetch("loginimpl", { /* 해당 url로 아래의 객체를 포함하여 통신요청 */
 			method:"post",
 			headers:headerObj, 
-			body: JSON.stringify(paramObj) /* json으로 문자열로 전환하여 body에 저장 */
+			body:JSON.stringify(paramObj) /* json으로 문자열로 전환하여 body에 저장 */
 		
 		}).then(response => { /* 200번대 코드가 넘어오면 ok => true */
 			

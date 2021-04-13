@@ -12,9 +12,6 @@ public interface UserService {
 	//실질적인 코드 구현은 ServiceImpl에서 진행
 	
 	
-	User memberAuthenticate(User user);
-	
-	void userLogout(HttpSession session);
 	
 	User selectMemberById(String userId);
 	
@@ -22,8 +19,15 @@ public interface UserService {
 
 	int insertUser(User persistUser);
 	
+	User memberAuthenticate(User user);
+	
+	void userLogout(HttpSession session);
+	
 	int updateUserInfo(User user);
 	
 	int withdrawUser(String userId);
-
+	
+	String findUserId(String userName, String userTell);
+	
+	User findUserPw(String userId, String userMail);
 }
