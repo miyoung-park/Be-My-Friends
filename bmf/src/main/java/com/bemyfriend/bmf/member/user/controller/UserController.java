@@ -161,8 +161,13 @@ public class UserController {
 		
 		
 		String userId = userService.findUserId(userName, userTell);
+		if(userId == null) {
+			
+			model.addAttribute("fail","조회되는 회원이 없습니다.");
+		}
+			
+			
 		model.addAttribute("userId",userId);
-		
 		return "member/user/find_result";
 	}
 	
