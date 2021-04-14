@@ -23,6 +23,7 @@
   </head>
   <body>
 	
+
    		<!-- header bar -->
    		<div class="wrap">
 			<div class="container">
@@ -36,9 +37,11 @@
 					<div class="col-md-6 d-flex justify-content-md-end">
 						<div class="social-media">
 				    		<p class="mb-0 d-flex">
-				    			<c:if test="${sessionScope.userMember == null and sessionScope.comMember == null}">
+				    		<c:if test="${empty sessionScope.userMember and empty sessionScope.comMember}">
 										<a href="/member/user/login" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook">로그인</span></a>
 				    					<a href="/member/company/login" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram">기업로그인</span></a>
+				    					<a href="/member/join" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram">회원가입</span></a>
+
 								</c:if>
 								<c:if test="${sessionScope.userMember != null}">
 										<a href="/member/user/logout" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook">로그아웃</span></a>
@@ -148,32 +151,37 @@
 							<div class="row no-gutters">
 								<div class="col-md-7-p">
 									<div class="contact-wrap w-100 p-md-5 p-4">
-										<form method="POST" id="contactForm" name="contactForm" class="contactForm">
+									
+										<form:form modelAttribute="company" action="${context}/member/company/mailauth" method="POST" id="contactForm" name="contactForm" class="contactForm">
 											<div class="row">
+												
 												<div class="col-md-6">
 													<div class="form-group">
-														<label class="label" for="name">아이디</label>
+														<label class="label" for="comId">기업 아이디</label><span id="idCheck" class="id_check"></span>
 															<div class="idcheck-group">
-																<input type="text" class="form-control" name="name" id="name" >
+																<input type="text" class="form-control" name="comId" id="comId" >
+
 																<button type="button" onclick="idCheck()" class="btn btn-primary-p">확인</button>
 															</div>
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label class="label" for="#">기업명</label>
-														<input type="text" class="form-control" name="name"  id="name"></input>
+														<label class="label" for="name">기업명</label>
+														<input type="text" class="form-control" name="comName"  id="comName"></input>
 													</div>
 												</div>
 												<div class="col-md-6"> 
 													<div class="form-group">
-														<label class="label" for="email">비밀번호</label>
-														<input type="password" class="form-control" name="pw" id="pw" placeholder="비밀번호를 입력하세요.">
+														<label class="label" for="comPw">비밀번호</label>
+														<input type="password" class="form-control" name="comPw" id="comPw" placeholder="비밀번호를 입력하세요.">
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label class="label" for="subject">비밀번호 확인</label>
+														<label class="label" id="check-group">비밀번호 확인</label>
+														<span id="pw_confirm" class="pw_check"></span>
+														<form:errors path="comPw" cssClass="pw_check"></form:errors>
 														<input type="password" class="form-control" name="checkpw" id="checkpw" placeholder="비밀번호를 다시 입력해주세요.">
 													</div>
 												</div>
@@ -181,34 +189,55 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" for="#">기업주소</label>
-														<input type="text" class="form-control" name="address"  id="address"></input>
+														<select onchange="addressInfo(this)" class="form-control" name="comAddress" id="comAddress" required="required" >
+															<option value="">지역을 선택하세요</option>
+															<option value="서울특별시">서울특별시</option>
+															<option value="강원도">강원도</option>
+															<option value="경기도">경기도</option>
+															<option value="인천광역시">인천광역시</option>
+															<option value="충청남도">충청남도</option>
+															<option value="충청북도">충청북도</option>
+															<option value="대전광역시">대전광역시</option>
+															<option value="세종특별시">세종특별시</option>
+															<option value="전라남도">전라남도</option>
+															<option value="전라북도">전라북도</option>
+															<option value="광주광역시">광주광역시</option>
+															<option value="경상남도">경상남도</option>
+															<option value="경상북도">경상북도</option>
+															<option value="부산광역시">부산광역시</option>
+															<option value="대구광역시">대구광역시</option>
+															<option value="울산광역시">울산광역시</option>
+															<option value="제주특별자치도">제주특별자치도</option>
+														</select>
+														<select class="form-control" name="twoAdd" id="twoAdd" required="required" style="display: none">
+														</select>
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label class="label" for="#">기업전화번호</label>
-														<input type="text" class="form-control" name="tell"  id="tell"></input>
+														<label class="label" for="comTell">기업전화번호</label>
+														<input type="tel" class="form-control" name="comTell"  id="comTell"></input>
 													</div>
 												</div>
 												<div class="col-md-12">
 													<div class="form-group">
-														<label class="label" for="#">기업이메일</label>
-														<input type="email" class="form-control" name="email"  id="email"></input>
+														<label class="label" for="comMail">기업이메일</label>
+														<input type="email" class="form-control" name="comMail"  id="comMail"></input>
 													</div>
 												</div>
-												<div class="col-md-12">
+												<div class="col-md-6">
 													<div class="form-group">
-														<label class="label" for="#">기업형태</label><br>
-															<input type="radio" class ="status" name="status1" id="status1"> 스타트업<br>
-															<input type="radio" class ="status" name="status2" id="status2"> 중소기업<br>
-															<input type="radio" class ="status" name="status3" id="status3"> 중견기업<br>
-															<input type="radio" class ="status" name="status4" id="status4"> 대기업				
+														<label class="label" for="status">기업형태</label><br>
+															<input type="radio" class ="status" name="comType" value="start" id="start"> 스타트업<br>
+															<input type="radio" class ="status" name="comType" value="small"id="small"> 중소기업<br>
+															<input type="radio" class ="status" name="comType" value="middle" id="middle"> 중견기업<br>
+															<input type="radio" class ="status" name="comType" value="big" id="big"> 대기업				
 													</div>
 												</div>
-												<div class="col-md-12">
+												<div class="col-md-6">
 													<div class="form-group">
-														<label class="label" for="#">인사담당자</label>
-														<input type="text" class="form-control" name="personmgr"  id="personmgr"></input>
+														<label class="label" for="comManager">인사담당자</label>
+														<input type="text" class="form-control" name="comManager"  id="comManager"></input>
 													</div>
 												</div>
 												<div class="col-md-12">
@@ -217,7 +246,8 @@
 													</div>
 												</div>
 											</div>
-										</form>
+										</form:form>
+
 									</div>
 								</div>
 								
@@ -321,6 +351,7 @@
   <script src="../../../../resources/js/jquery.magnific-popup.min.js"></script>
   <script src="../../../../resources/js/scrollax.min.js"></script>
   <script src="../../../../resources/js/main.js"></script>
+  <script src="../../../../resources/js/com_user.js"></script>
 
 
     

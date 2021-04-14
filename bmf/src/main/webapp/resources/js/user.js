@@ -87,6 +87,7 @@
 	let login = () => {
 		let paramObj = new Object();
 		paramObj.userId = userId.value; //VO의 변수명이랑 같아야 함
+
 		paramObj.userPw = userPw.value;
 		
 		let headerObj = new Headers();
@@ -96,6 +97,7 @@
 			method:"post",
 			headers:headerObj, 
 			body:JSON.stringify(paramObj) /* json으로 문자열로 전환하여 body에 저장 */
+
 		
 		}).then(response => { /* 200번대 코드가 넘어오면 ok => true */
 			
@@ -109,6 +111,7 @@
 			if(text == 'fail'){
 				alert('아이디나 비밀번호를 확인하세요');
 				userPw.value="";
+
 				
 			}else if(text == 'success'){
 				alert('로그인 되었습니다.');
@@ -130,39 +133,8 @@
 	
 	
 	
-// Member의 id값 찾는 메소드
-	let findUserId = () =>{ 
-		let infoObj = new Object();
-		infoObj.userName = userName.value;
-		infoObj.userTell = userTell.value;
-		
-		let headerObj = new Headers();
-		headerObj.append("content-type", "application/json");
-		
-		//비동기 처리해서 화면이 새로고침 되지않고 element에서만 바뀌도록 설정
-		fetch(urlToFindId, { //해당 url로 객체정보 포함하여 통신요청
-			method: "post",
-			headers: headerObj,
-			body:JSON.stringify(infoObj)
-			
-		}).then(response => {
-			
-			return response.text();
-			
-		}).then((text) => {
-			
-			if(text == 'fail'){
-				alert('잘못된 회원정보를 입력하셨습니다.');
-			}else{
-				document.querySelector("#find_id_result").style.display = "flex";
-				document.querySelector("#find_id_result").style.flexDirection = "column";
-				document.querySelector('#find_id_result').innerHTML = '검색된 아이디는<h2>[' + text + ']</h2>입니다.';
-				document.querySelector('#find_id_table').style.display = "none";
-				
-			}
-		});
-	};	
-	
+
+
 
 	
 	
@@ -173,6 +145,7 @@
 		
 		if(result){
 			console.dir(userId.value);
+
 			
 			let headerObj = new Headers();
 			headerObj.append("content-type", "application/x-www-form-urlencoded");
@@ -180,6 +153,7 @@
 			fetch("withdraw?userId="+userId.value, {
 				method:"GET",
 				headers:headerObj			
+
 				
 			}).then(response => {
 				console.dir(response);
@@ -191,6 +165,7 @@
 				if(text == 'success'){
 					alert('회원탈퇴가 완료되었습니다.');
 					location.href = "/index";
+
 				
 				}else{
 					alert('회원탈퇴 중 오류가 발생하였습니다. 다시 시도해주세요.');
@@ -236,8 +211,8 @@
 				      }    
 			      }
 			 }); 
-		}
-	
+
+	}
 	
 
 	//User 주소 알림
@@ -292,3 +267,5 @@
 			  target.appendChild(opt);
 		  }
 	  }
+
+

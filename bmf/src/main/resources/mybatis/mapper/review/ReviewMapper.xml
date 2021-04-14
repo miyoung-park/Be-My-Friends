@@ -44,4 +44,11 @@
     <update id="viewCount">
           update review set view_cnt= view_cnt+1 where review_no = ${view}
     </update> 
+
+    <!-- 댓글 작성 기능 --> 
+    <insert id="reviewReply">
+    insert into review_comment(review_comment_no,review_no,user_id,review_comment_content)
+    values(sc_rvc_idx.nextval,#{reviewNo},#{userId},#{reviewCommentContent})
+    </insert>
+   
 </mapper>

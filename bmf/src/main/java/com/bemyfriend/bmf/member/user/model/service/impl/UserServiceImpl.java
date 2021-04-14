@@ -12,8 +12,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -33,36 +35,31 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private MailSender mail;
+	/*
 	@Autowired
 	private RestTemplate http;
 	@Autowired
 	private BCryptPasswordEncoder encoder;
+	*/
+	
+	RestTemplate http = new RestTemplate();
+	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-	
-	@Bean //RestTemplate Bean 생성오류로 직접 Bean으로 생성
-	public RestTemplate restTemplate() {
-	    return new RestTemplate();
-	}
-	
-	@Bean
-	public BCryptPasswordEncoder encoder(){
-	  return new BCryptPasswordEncoder();
-	}
 
-	
-	
 	public UserServiceImpl(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	
 	 }
 	
 	
+
 	//idCheck
 	@Override 
 	public User selectMemberById(String userId) {
 		
 		return userRepository.selectMemberById(userId);
 	}
+
 
 
 	//회원가입 - mail 보내기
@@ -105,6 +102,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	 
+
 
 	// 회원가입 완료
 	@Override 
@@ -177,7 +175,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	
-	
+
 	
 	
 	

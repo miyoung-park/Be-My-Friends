@@ -12,9 +12,7 @@ public class MemberController {
 	
 	@GetMapping("join")
 	public String moveToJoin() {
-		  
-
-
+		
 		
 		return "member/join";
 	}
