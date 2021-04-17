@@ -121,7 +121,6 @@
     
     
     
-    
 	<div class="hero-wrap js-fullheight"
 		style=" background-image: url('../../../../resources/images/bg_8.jpg'); "
 		data-stellar-background-ratio="0.5">
@@ -131,12 +130,7 @@
 				class="row no-gutters slider-text js-fullheight align-items-center justify-content-center"
 				data-scrollax-parent="true">
 				<div class="col-md-11 ftco-animate text-center">
-					<h1 class="mb-4">당신의 새로운 시작을 응원합니다.</h1>
-					<p>
-						<a href="#" class="btn btn-primary mr-md-4 py-3 px-4">Learn
-							more <span class="ion-ios-arrow-forward"></span>
-						</a>
-					</p>
+					<h1 class="mb-4">캘린더 맵</h1>
 				</div>
 			</div>
 		</div>
@@ -151,11 +145,11 @@
 							<span class="flaticon-blind"></span>
 						</div>
 						<div class="media-body">
-							<h3 class="heading">Dog Walking</h3>
+							<h3 class="heading">채용공고 calendar</h3>
 							<p>Far far away, behind the word mountains, far from the
 								countries Vokalia and Consonantia, there live the blind texts.
 								Separated they live in Bookmarksgrove right.</p>
-							<a href="#"
+							<a href="/calendar/recruit"
 								class="btn-custom d-flex align-items-center justify-content-center"><span
 								class="fa fa-chevron-right"></span><i class="sr-only">Read
 									more</i></a>
@@ -168,11 +162,11 @@
 							<span class="flaticon-dog-eating"></span>
 						</div>
 						<div class="media-body">
-							<h3 class="heading">Pet Daycare</h3>
+							<h3 class="heading">회사 위치</h3>
 							<p>Far far away, behind the word mountains, far from the
 								countries Vokalia and Consonantia, there live the blind texts.
 								Separated they live in Bookmarksgrove right.</p>
-							<a href="#"
+							<a href="/kmap/companyLocation"
 								class="btn-custom d-flex align-items-center justify-content-center"><span
 								class="fa fa-chevron-right"></span><i class="sr-only">Read
 									more</i></a>
@@ -185,11 +179,11 @@
 							<span class="flaticon-grooming"></span>
 						</div>
 						<div class="media-body">
-							<h3 class="heading">Pet Grooming</h3>
+							<h3 class="heading">장애인 시설 위치</h3>
 							<p>Far far away, behind the word mountains, far from the
 								countries Vokalia and Consonantia, there live the blind texts.
 								Separated they live in Bookmarksgrove right.</p>
-							<a href="#"
+							<a href="/kmap/facility"
 								class="btn-custom d-flex align-items-center justify-content-center"><span
 								class="fa fa-chevron-right"></span><i class="sr-only">Read
 									more</i></a>
@@ -199,6 +193,8 @@
 			</div>
 		</div>
 	</section>
+	
+	<!--
 
 	<section class="ftco-section ftco-no-pt ftco-no-pb">
 		<div class="container">
@@ -926,6 +922,8 @@
 			</div>
 		</div>
 	</section>
+	
+	-->
 
 	<footer class="footer">
 			<div class="container">
