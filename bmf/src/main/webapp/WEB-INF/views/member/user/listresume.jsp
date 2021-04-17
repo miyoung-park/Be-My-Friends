@@ -136,22 +136,26 @@
     
     <section class="ftco-section bg-light">
 			<div class="container resume_list">
-				<div class="row">
-					<div class="col-md-6 col-lg-3 ftco-animate">
+			<div class="row">
+				<c:forEach var="resumeList" items="${resumeList}" begin="0" end="11">
+					<form class="col-md-6 col-lg-3 ftco-animate detail_list" style="cursor: pointer;" onclick="location.href='/member/user/resume/detail?resIdx=${resumeList.resIdx}'">
 						<div class="staff">
-							<div class="img-wrap d-flex align-items-stretch">
-								<div class="img align-self-stretch" style="background-image: url(images/staff-1.jpg);"></div>
+							<div class="img-wrap d-flex align-items-stretch" >
+								<div class="img align-self-stretch" style="background-image: url(../../../../resources/images/resume7.png);" ></div>
 							</div>
-							<div class="text pt-3 px-3 pb-4 text-center">
-								<h3>${userMember.userId}</h3>
-								<span class="position mb-2">Health Coach</span>
-								<div class="faded">
-									<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-	            				</div>
+							<div class="text pt-3 px-3 pb-4 text-center" onclick="location.href='/member/user/resume/detail?resIdx=${resumeList.resIdx}'">
+								<h3 id="resTitle" >${resumeList.resTitle}</h3>
+								<span class="position mb-2" id="user_id">${resumeList.userId}</span>
+								
 							</div>
 						</div>
-					</div>
-				</div>
+					</form>
+				</c:forEach>
+			</div>
+				
+				
+				
+				
 				
 				<div class="row mt-5">
 					<div class="col text-center">
@@ -184,8 +188,8 @@
 				
 				
 				
-				
-		<button type="button" class="btn button create_btn" onclick="location.href='/member/user/resume/create'">이력서 작성</button>	
+				<!--  onclick="location.href='/member/user/resume/create'" -->
+		<button type="button" class="btn button create_btn"  onclick="create()">이력서 작성</button>	
 		</div>
 		
 			
@@ -292,7 +296,23 @@
   <script src="../../../../resources/js/scrollax.min.js"></script>
   <script src="../../../../resources/js/main.js"></script>
   <script src="../../../../resources/js/user.js"></script> 
+  <script type="text/javascript">
+  
 
+  
+  function create(){
+	  
+	  if(${resumeList.size()} > 11){
+		  alert("자기소개서는 12개까지만 저장할 수 있습니다.");
+		  location.href = "";
+		  
+	  }else if(${resumeList.size()} <= 10){
+		  location.href="/member/user/resume/create";
+		  
+	  }
+	  
+  }  
+  </script>
     
   </body>
 </html>

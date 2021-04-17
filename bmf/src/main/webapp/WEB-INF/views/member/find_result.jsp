@@ -171,22 +171,30 @@
 									</div>
 									
 									<div class="row move_btn_form">
-										<c:if test="${!empty userId || !empty comId}">
-											<div class="col-md-6 move_btn">
+										<div class="col-md-6 move_btn">
+										<c:choose>
+											<c:when test="${!empty userId}">
 												<button type="submit" onclick="location.href='/member/user/login'"  class="btn btn-primary">로그인 하기</button>
-											</div>
-										</c:if>
-										<c:if test="${!empty userId}">
-											<div class="col-md-6 move_btn">
+											</c:when>
+											<c:when test="${!empty comId}">
+												<button type="submit" onclick="location.href='/member/company/login'"  class="btn btn-primary">로그인 하기</button>
+											</c:when>
+											<c:otherwise>
+												<button type="submit" onclick="location.href='/member/join'"  class="btn btn-primary">회원가입</button>
+											</c:otherwise>	
+										</c:choose>
+										</div>
+										<div class="col-md-6 move_btn">
+										<c:choose>
+											<c:when test="${!empty userId}">
 												<button type="submit" onclick="location.href='/member/user/findinfo'"  class="btn btn-primary">비밀번호 찾기</button>
-											</div>
-										</c:if>
-										<c:if test="${!empty comId}">
-											<div class="col-md-6 move_btn">
+											</c:when>
+											<c:when test="${!empty comId}">	
 												<button type="submit" onclick="location.href='/member/company/findinfo'"  class="btn btn-primary">비밀번호 찾기</button>
-											</div>
-										</c:if>
-										
+											</c:when>
+											<c:otherwise> </c:otherwise>
+										</c:choose>		
+										</div>						
 									</div>
 									
 								</div>

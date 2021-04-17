@@ -172,7 +172,7 @@
 									
 										
 										<%-- 비밀번호 찾기시 --%>
-											<form id="findPwForm" method="GET" action="${context}/member/company/findcompw" name ="findPwForm" class="contactForm"  style="display:none;" ">
+											<form id="findPwForm" method="GET" action="${context}/member/company/findcompw" name ="findPwForm" class="contactForm"  style="display:none;" >
 												<div class="row">
 													<div class="col-md-12">
 														<div class="form-group">
@@ -313,12 +313,12 @@
 		
 	} 
 	
-function getFindPw(){
-	
-		document.getElementById('findPwForm').style.display="inline";
-		document.getElementById('findIdForm').style.display="none";
-	} 
-	
+	function getFindPw(){
+		
+			document.getElementById('findPwForm').style.display="inline";
+			document.getElementById('findIdForm').style.display="none";
+		} 
+		
 	
 	
 </script>
