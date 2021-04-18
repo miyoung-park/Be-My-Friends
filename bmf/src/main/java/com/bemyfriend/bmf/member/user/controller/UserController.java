@@ -85,6 +85,7 @@ public class UserController {
 		if(userService.selectMemberById(userId) != null) {
 			return "fail"; 
 		}
+
 		return "available";
 	}
 	

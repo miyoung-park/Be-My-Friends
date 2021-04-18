@@ -338,8 +338,7 @@
 											<div class="row">
 											<div class="resume-category">
 												<h3>희망사항</h3><br><br>
-											</div>
-											
+											</div>										
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label"id="check-group" >고용형태</label>
