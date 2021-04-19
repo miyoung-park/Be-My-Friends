@@ -219,17 +219,86 @@
 													</div>
 												</div>
 												<div class="col-md-6">
-													<div class="form-group"><label class="label"id="check-group" >주소</label>
-														<input type="text" class="form-control" name="userAdd" id="userAdd" value ="${userMember.userAdd}">
+													<div class="form-group">
+														<label class="label" >주소</label>
+														<select onchange="addressInfo(this)" class="form-control" name="userAdd" id="userAdd"  >
+															<option value="선택안함">지역을 선택하세요</option>
+															<option value="서울특별시">서울특별시</option>
+															<option value="강원도">강원도</option>
+															<option value="경기도">경기도</option>
+															<option value="인천광역시">인천광역시</option>
+															<option value="충청남도">충청남도</option>
+															<option value="충청북도">충청북도</option>
+															<option value="대전광역시">대전광역시</option>
+															<option value="세종특별시">세종특별시</option>
+															<option value="전라남도">전라남도</option>
+															<option value="전라북도">전라북도</option>
+															<option value="광주광역시">광주광역시</option>
+															<option value="경상남도">경상남도</option>
+															<option value="경상북도">경상북도</option>
+															<option value="부산광역시">부산광역시</option>
+															<option value="대구광역시">대구광역시</option>
+															<option value="울산광역시">울산광역시</option>
+															<option value="제주특별자치도">제주특별자치도</option>
+														</select>
+														<select class="form-control" name="twoadd" id="twoadd" re">
+														</select>
+														</div>
+													</div>
+												<div class="col-md-6">
+													<div class="form-group"><label class="label"id="check-group" >기존주소</label>
+														<input type="text" class="form-control" value ="${userMember.userAdd}" >
 													</div>
 												</div>
+					
 												<div class="col-md-6">
 													<div class="form-group">
 														<label class="label" id="check-group">생년월일</label>
 														<input type="date" class="form-control" name="userBirth" id="userBirth" value ="${userMember.userBirth}">
 													</div>
 												</div>
-												
+												<div class="col-md-12">
+													<div class="form-group ">
+													<label class="label" for="userService">희망제공서비스</label><br>
+														<div class="service_part">
+															<div>
+																<input type="radio" class ="userService" name="supLift" value="1" id="supLift"> 장애인 리프트<br>
+																<input type="radio" class ="userService" name="supElv" value="1" id="supElv"> 장애인 앨리베이터<br>
+																<input type="radio" class ="userService" name="supBath" value="1" id="supBath"> 장애인 화장실<br>
+															</div>
+															<div>
+																<input type="radio" class ="userService" name="supVoice" value="1" id="supVoice"> 장애인 음성유도기<br>
+																<input type="radio" class ="userService" name="supBlock" value="1" id="supBlock"> 점자 블럭<br>
+																<input type="radio" class ="userService" name="supSign" value="1"id="supSign"> 점자 표지판<br>
+																
+															</div>	
+															<div>
+																<input type="radio" class ="userService" name="supPark" value="1" id="supPark"> 장애인 주차장<br>
+																<input type="radio" class ="userService" name="supCharge" value="1" id="supCharge"> 전동휠체어 충전기<br>
+																<input type="radio" class ="userService" name="supWelfare" value="1" id="supWelfare"> 사회복지사<br>
+															</div>
+															<a id="remove_btn">[ 초기화 ]</a>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div class="form-group ">
+													<label class="label" for="userService">선택한 희망제공서비스</label><br>
+														<div class="service_part">
+															<div id="choose_service">
+															<c:if test="${service.supLift == 1}"><span>#장애인_리프트</span></c:if>
+															<c:if test="${service.supElv == 1}"><span>#장애인_앨리베이터</span></c:if>
+															<c:if test="${service.supBath == 1}"><span>#장애인_화장실</span></c:if>
+															<c:if test="${service.supVoice == 1}"><span>#장애인_음성유도기</span></c:if>
+															<c:if test="${service.supBlock == 1}"><span>#점자블럭</span></c:if>
+															<c:if test="${service.supSign == 1}"><span>#점자_표지판</span></c:if>
+															<c:if test="${service.supPark == 1}"><span>#장애인_주차장</span></c:if>
+															<c:if test="${service.supCharge == 1}"><span>#전동휠체어_충전기</span></c:if>
+															<c:if test="${service.supWelfare == 1}"><span>#사회복지사</span></c:if>
+															</div>
+														</div>
+													</div>
+												</div>
 												<div class="col-md-12">
 													<div class="form-group-log">
 														<button type="submit" class="delete-btn btn-delete" id="withdrawUser" onclick="withdraw()">회원탈퇴하기</button>
@@ -345,7 +414,12 @@
   <script src="../../../../resources/js/scrollax.min.js"></script>
   <script src="../../../../resources/js/main.js"></script>
   <script src="../../../../resources/js/user.js"></script> 
+<script type="text/javascript">
 
+$("#remove_btn").click(function() {
+	$('input.userService').removeAttr('checked');
+})
+</script>
 
     
   </body>

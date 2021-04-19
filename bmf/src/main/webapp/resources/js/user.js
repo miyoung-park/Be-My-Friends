@@ -189,6 +189,7 @@
 			      if(password == ''){
 			    	  e.preventDefault();
 				      pw_check.innerHTML = '비밀번호를 입력해주세요.';
+				      alert('비밀번호를 입력해주세요.');
 				      
 			      }else{
 			    	  
