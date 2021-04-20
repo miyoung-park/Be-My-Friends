@@ -152,7 +152,7 @@ public class UserController {
 		session.removeAttribute("persistUser");
 		
 		model.addAttribute("alertMsg", "회원가입이 완료되었습니다.");
-		model.addAttribute("url",ConfigCode.DOMAIN+"/index");
+		model.addAttribute("url","/member/user/login");
 		return "common/result";
 		
 	}
@@ -270,6 +270,8 @@ public class UserController {
 			System.out.println("service session : " + service);
 			//로그인 정보 세션 저장
 			session.setAttribute("userMember", userMember);
+			session.setAttribute("memberId", userMember.getUserId());
+			session.setAttribute("memberName", userMember.getUserName());
 			return "success";
 		}
 	}
@@ -309,12 +311,8 @@ public class UserController {
 								, HttpSession session
 								, Model model){
 		
-		System.out.println(user.getUserAdd());
+	
 		
-		//주소합쳐주기
-		if(user.getUserAdd() != "선택안함") {
-			user.setUserAdd(user.getUserAdd()+ " " + user.getTwoadd());
-		}
 		System.out.println("user : " + user);
 		System.out.println("serviceInfo : " + serviceInfo);
 		

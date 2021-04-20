@@ -219,35 +219,8 @@
 													</div>
 												</div>
 												<div class="col-md-6">
-													<div class="form-group">
-														<label class="label" >주소</label>
-														<select onchange="addressInfo(this)" class="form-control" name="userAdd" id="userAdd"  >
-															<option value="선택안함">지역을 선택하세요</option>
-															<option value="서울특별시">서울특별시</option>
-															<option value="강원도">강원도</option>
-															<option value="경기도">경기도</option>
-															<option value="인천광역시">인천광역시</option>
-															<option value="충청남도">충청남도</option>
-															<option value="충청북도">충청북도</option>
-															<option value="대전광역시">대전광역시</option>
-															<option value="세종특별시">세종특별시</option>
-															<option value="전라남도">전라남도</option>
-															<option value="전라북도">전라북도</option>
-															<option value="광주광역시">광주광역시</option>
-															<option value="경상남도">경상남도</option>
-															<option value="경상북도">경상북도</option>
-															<option value="부산광역시">부산광역시</option>
-															<option value="대구광역시">대구광역시</option>
-															<option value="울산광역시">울산광역시</option>
-															<option value="제주특별자치도">제주특별자치도</option>
-														</select>
-														<select class="form-control" name="twoadd" id="twoadd" re">
-														</select>
-														</div>
-													</div>
-												<div class="col-md-6">
 													<div class="form-group"><label class="label"id="check-group" >기존주소</label>
-														<input type="text" class="form-control" value ="${userMember.userAdd}" >
+														<input type="text" class="form-control" name="userAdd" id="userAdd"value ="${userMember.userAdd}" >
 													</div>
 												</div>
 					
@@ -281,24 +254,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="col-md-12">
-													<div class="form-group ">
-													<label class="label" for="userService">선택한 희망제공서비스</label><br>
-														<div class="service_part">
-															<div id="choose_service">
-															<c:if test="${service.supLift == 1}"><span>#장애인_리프트</span></c:if>
-															<c:if test="${service.supElv == 1}"><span>#장애인_앨리베이터</span></c:if>
-															<c:if test="${service.supBath == 1}"><span>#장애인_화장실</span></c:if>
-															<c:if test="${service.supVoice == 1}"><span>#장애인_음성유도기</span></c:if>
-															<c:if test="${service.supBlock == 1}"><span>#점자블럭</span></c:if>
-															<c:if test="${service.supSign == 1}"><span>#점자_표지판</span></c:if>
-															<c:if test="${service.supPark == 1}"><span>#장애인_주차장</span></c:if>
-															<c:if test="${service.supCharge == 1}"><span>#전동휠체어_충전기</span></c:if>
-															<c:if test="${service.supWelfare == 1}"><span>#사회복지사</span></c:if>
-															</div>
-														</div>
-													</div>
-												</div>
+												
 												<div class="col-md-12">
 													<div class="form-group-log">
 														<button type="submit" class="delete-btn btn-delete" id="withdrawUser" onclick="withdraw()">회원탈퇴하기</button>
@@ -414,12 +370,46 @@
   <script src="../../../../resources/js/scrollax.min.js"></script>
   <script src="../../../../resources/js/main.js"></script>
   <script src="../../../../resources/js/user.js"></script> 
-<script type="text/javascript">
-
-$("#remove_btn").click(function() {
-	$('input.userService').removeAttr('checked');
-})
-</script>
+	<script type="text/javascript">
+	<%-- 초기화 버튼 클릭시 모든 radio unchecked --%>
+	$("#remove_btn").click(function() {
+		$('input.userService').removeAttr('checked');
+	})
+	
+	
+	
+	<%-- 세센의 값대로 radio checked --%>
+	if(${service.supLift == 1}){
+		$('#supLift').prop('checked', true);
+	}
+	
+	if(${service.supElv == 1}){
+		$('#supElv').prop('checked', true);
+	}
+	if(${service.supBath == 1}){
+		$('#supBath').prop('checked', true);
+	}
+	if(${service.supVoice == 1}){
+		$('#supVoice').prop('checked', true);
+	}
+	if(${service.supBlock == 1}){
+		$('#supBlock').prop('checked', true);
+	}
+	if(${service.supSign == 1}){
+		$('#supSign').prop('checked', true);
+	}
+	if(${service.supPark == 1}){
+		$('#supPark').prop('checked', true);
+	}
+	if(${service.supCharge == 1}){
+		$('#supCharge').prop('checked', true);
+	}
+	if(${service.supWelfare == 1}){
+		$('#supWelfare').prop('checked', true);
+	}
+	
+	
+	</script>
 
     
   </body>

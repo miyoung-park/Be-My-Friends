@@ -15,6 +15,7 @@ import com.bemyfriend.bmf.common.code.ConfigCode;
 import com.bemyfriend.bmf.member.company.model.repository.CompanyRepository;
 import com.bemyfriend.bmf.member.company.model.service.CompanyService;
 import com.bemyfriend.bmf.member.company.model.vo.Company;
+import com.bemyfriend.bmf.member.company.model.vo.CompanySupport;
 import com.bemyfriend.bmf.member.user.model.repository.UserRepository;
 
 @Service
@@ -25,14 +26,12 @@ public class CompanyServiceImpl implements CompanyService{
 	
 	@Autowired
 	private JavaMailSender mail;
-	
-	/*
 	@Autowired
 	private BCryptPasswordEncoder encoder;
-	*/
+	@Autowired
+	private RestTemplate http;
 	
-	RestTemplate http = new RestTemplate();
-	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	 
 	
 	//생성자로 의존성 주입
 	public CompanyServiceImpl(CompanyRepository companyRepository) {
@@ -60,7 +59,7 @@ public class CompanyServiceImpl implements CompanyService{
 		MimeMessage msg = mail.createMimeMessage();
 		System.out.println("impl : " + authPath);
 		try {
-			msg.setFrom("bemyfriend_@naver.com");
+			msg.setFrom("bemyfriend486@gmail.com");
 			msg.setRecipients(Message.RecipientType.TO, persistUser.getComMail());
 			msg.setSubject("회원가입을 축하드립니다.");
 			msg.setContent("<h2> 반갑습니다." + persistUser.getComId() 
@@ -75,26 +74,6 @@ public class CompanyServiceImpl implements CompanyService{
 			e.printStackTrace();
 		}
 		
-		
-		
-		
-		
-		
-		/* MultiValueMap<String, String> body = new LinkedMultiValueMap<String, String>();
-		body.add("mail-temp", "temp_join");
-		body.add("comId", peristUser.getComId());
-		body.add("authPath", authPath);
-		System.out.println(body);
-		
-		RequestEntity<MultiValueMap<String, String>> request = RequestEntity
-																.post(ConfigCode.DOMAIN+"/mail")
-																.header("context-type", MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-																.body(body);
-		System.out.println(request);
-		ResponseEntity<String> response = http.exchange(request, String.class);
-		String message = response.getBody();
-		System.out.println(message);
-		mail.send(peristUser.getComMail(), "회원가입을 축하합니다.", message); */
 		
 	
 	}
@@ -129,6 +108,7 @@ public class CompanyServiceImpl implements CompanyService{
 	}
 
 
+	
 
 	// 로그아웃 기능
 	@Override
@@ -177,6 +157,24 @@ public class CompanyServiceImpl implements CompanyService{
 	public Company findComPw(String comId, String comMail) {
 		
 		return companyRepository.selectComForFindPw(comId, comMail);
+	}
+
+
+
+	// 서포트 등록하기/업데이트 하기
+	@Override
+	public int uploadSupport(CompanySupport support) {
+		
+		return companyRepository.uploadSupport(support);
+	}
+
+
+
+	// 서포트 가져오기
+	@Override
+	public CompanySupport selectSupport(String comId) {
+		
+		return companyRepository.selectSupport(comId);
 	}
 
 
