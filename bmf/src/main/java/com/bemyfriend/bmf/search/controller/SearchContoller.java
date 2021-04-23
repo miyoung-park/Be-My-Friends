@@ -45,6 +45,26 @@ public class SearchContoller {
 	
 	
 	
+	@GetMapping("searchkeyword")
+	public String searchDeep(@RequestParam String searchType
+							, @RequestParam String keyword
+							, Model model) {
+		
+		System.out.println(searchType);
+		System.out.println(keyword);
+		
+		List<CompanyHire> hireInfo = searchService.searcKeyword(searchType, keyword);
+		
+		System.out.println("hireInfo : " + hireInfo);
+		
+		
+		return "search/searchlist";
+		
+	}
+	
+	
+	
+	
 	
 	
 	
