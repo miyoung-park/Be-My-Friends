@@ -9,22 +9,22 @@
 	
 	
 	<select id="searchKeyword" resultType="companyHire">
-		SELECT * FROM COM_HIRE WHERE
+		SELECT * FROM COM_HIRE  
 		<choose>
 			<when test="searchType == 'searchTotal'">
-				 JOB_TITLE LIKE '%||#{keyword}||%'
+				WHERE JOB_TITLE LIKE '%'||#{keyword}||'%' or COM_NAME LIKE '%'||#{keyword}||'%' or JOB_LOCATION LIKE '%'||#{keyword}||'%'
 			</when>
 			<when test="searchType == 'searchDuty'">
-				 JOB_DUTY LIKE '%||#{keyword}||%'
+				WHERE JOB_DUTY LIKE '%'||#{keyword}||'%'
 			</when>
 			<when test="searchType == 'searchPlace'">
-				 JOB_LOCATION LIKE '%||#{keyword}||%'
+				WHERE JOB_LOCATION LIKE '%'||#{keyword}||'%'
 			</when>
 			<when test="searchType == 'searchCom'">
-				A JOIN COM_USER C ON A.COM_ID = C.COM_ID WHERE C.COM_TYPE LIKE '%||#{keyword}||%'
+				A JOIN COM_USER C ON A.COM_ID = C.COM_ID WHERE C.COM_TYPE LIKE '%'||#{keyword}||'%'
 			</when>
 			<when test="searchType == 'searchExp'">
-				WHERE JOB_CAREER LIKE '%||#{keyword}||%'
+				WHERE JOB_CAREER LIKE '%'||#{keyword}||'%'
 			</when>
 		</choose>
 	</select>

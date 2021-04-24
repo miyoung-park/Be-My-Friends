@@ -181,11 +181,11 @@
 						<div class="col-md-6 col-lg-3 ftco-animate"  onClick="location.href='/recruitment/recruitmentView?view=${recru.jobNo}'">
 							<div class="staff">
 								<div class="img-wrap d-flex align-items-stretch">
-									<div class="img align-self-stretch"><img src="/resources/recruitment/${recru.jobImage}"></div> <!-- 채용공고 작성란에서 어떻게 받아오는지 확인한 뒤 수정 -->
+									<div class="img align-self-stretch"><img src="#"></div> <!-- 채용공고 작성란에서 어떻게 받아오는지 확인한 뒤 수정 -->
 								</div>
 								<div class="text pt-3 px-3 pb-4 text-center">
-									<h3>${recru.comId}</h3>
-									<span class="position mb-2">${recru.jobTitle}</span>
+									<h3>${recru.jobTitle}</h3>
+									<span class="position mb-2">${recru.comName}</span>
 									<div class="faded">
 										<p>${recru.jobLocation}</p>
 										<ul class="ftco-social text-center"> </ul>

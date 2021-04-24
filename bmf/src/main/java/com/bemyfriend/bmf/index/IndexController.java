@@ -17,8 +17,13 @@ public class IndexController {
 		return "indexMain";
 	}
 	
-	@GetMapping("/index2")
+	@GetMapping("/main")
 	public String index2(){
+		return "index";
+	}
+	
+	@GetMapping("/index2")
+	public String mainIndex(){
 		return "index";
 	}
 	
