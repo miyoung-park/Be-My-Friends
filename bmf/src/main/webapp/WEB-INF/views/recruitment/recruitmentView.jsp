@@ -98,10 +98,15 @@
 							<div class="form-group">
 
 								<c:if test="${today <= recru.jobDeadline}">
-									<c:if
-										test="${comMember.comIdx ne fn:substring(recru.typeIdx,1,7)}">
-										<button type="button" class="btn btn-primary" onclick="resumePopup()">지원하기</button>
-									</c:if>
+									<c:choose>
+										<c:when test="${!empty userMember}">
+											<button type="button" class="btn btn-primary" onclick="resumePopup()">지원하기</button>
+										</c:when>
+										<c:when test="${empty userMember && empty comMember}">
+											<button type="button" class="btn btn-primary" onclick="nonUserPopup()">지원하기</button>
+										</c:when>
+									</c:choose>
+									
 								</c:if>
 
 								<c:if test="${today > recru.jobDeadline}">
@@ -210,6 +215,12 @@
 	function resumePopup(){
 		
 		window.open("/member/user/resume/popup", "resume", "width=400, height=300, left=100, top=50");
+	}
+	
+	
+	function nonUserPopup(){
+		alert("로그인이 필요한 서비스 입니다.");
+		location.href = "/member/user/login"
 	}
 	
 	</script>
