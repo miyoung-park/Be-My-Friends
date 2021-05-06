@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/head.jsp"%>
 <!-- 팝업팝업 -->
-<!-- <body onload = "javascript:popup()"> -->
-<body>
+<body onload = "javascript:popup()">
+<!-- <body> -->
 
 	<div class="hero-wrap js-fullheight"
 		style="background-image: url('../../../../resources/images/bg_13.jpg');"
@@ -125,7 +125,7 @@
 									</button>
 								</h2>
 							</div>
-							<div class="collapse show" id="collapseOne" role="tabpanel"
+							<div class="collapse" id="collapseOne" role="tabpanel"
 								aria-labelledby="headingOne">
 								<div class="card-body py-3 px-0">
 									<ol>
@@ -254,7 +254,7 @@
 										<div class="user-img"
 											style="background-image: url(resources/images/profile/WhaleeProfile.jpg)"></div>
 										<div class="pl-3">
-											<p class="name">이 승민</p>
+											<p class="name">매콤펀치</p>
 											<span class="position">잘 아픔</span>
 										</div>
 									</div>
@@ -316,10 +316,15 @@
 											style="background-image: url(resources/images/profile/songProfile.jpg)"></div>
 										<div class="pl-3">
 											<p class="name">명재햄</p>
-											<span class="position">Marketing Manager</span>
+											<span class="position">배고픔</span>
 										</div>
 									</div>
-									<p class="mb-4">설명설명</p>
+									<p class="mb-4">
+										<br />
+										* Calendar <br />
+										* Map
+									
+									</p>
 								</div>
 							</div>
 						</div>
@@ -345,7 +350,7 @@
 						<div class="col-md-4 ftco-animate">
 							<div class="block-7">
 								<div class="img"
-									style="background-image: url(resources/images/pricing-1.jpg);"></div>
+									style="background-image: url(resources/images/membership/gold.png);"></div>
 								<div class="text-center p-4">
 									<span class="excerpt d-block">Gold</span> <span class="price"><sup>$</sup>
 										<span class="number">49</span> <sub>/mos</sub></span>
@@ -367,7 +372,7 @@
 						<div class="col-md-4 ftco-animate">
 							<div class="block-7">
 								<div class="img"
-									style="background-image: url(resources/images/pricing-2.jpg);"></div>
+									style="background-image: url(resources/images/membership/platinum.png);"></div>
 								<div class="text-center p-4">
 									<span class="excerpt d-block">Platinum</span> <span
 										class="price"><sup>$</sup> <span class="number">79</span>
@@ -390,7 +395,7 @@
 						<div class="col-md-4 ftco-animate">
 							<div class="block-7">
 								<div class="img"
-									style="background-image: url(resources/images/pricing-3.jpg);"></div>
+									style="background-image: url(resources/images/membership/diamond.png); background-size : cover;"></div>
 								<div class="text-center p-4">
 									<span class="excerpt d-block">Diamond</span> <span
 										class="price"><sup>$</sup> <span class="number">109</span>
