@@ -19,6 +19,12 @@
 - SQL : Oracle
 - Server : Apache Tomcat 8.5
 
+## 개발언어
+- Java / Spring
+- JavaScript
+- JSP
+- Html, CSS
+
 ## 구현기능
 - Actor 관리(2actors - 회원가입, 로그인, 마이페이지, 이력서, 채용공고 관리)   
 - Map 구현(장애인 시설 위치확인 서비스)   
@@ -26,4 +32,4 @@
 - Board 구현(리뷰, 법, 미디어 등)   
 
 ## Data Base 구성
-
+<img width="1259" alt="bemyfriends" src="https://user-images.githubusercontent.com/78000536/140862295-9e4c24bc-e94e-46ec-94a5-f5aa95d54dcd.png">
