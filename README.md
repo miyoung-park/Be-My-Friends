@@ -13,6 +13,11 @@
 장애인 취업시장을 개인이 쉽게 접근할 수 있도록 도와주는 채용사이트를 의도함
 
 ## 개발환경
+- Scheduling : Trello
+- UI / UX design : Figma
+- development tools : Eclips
+- SQL : Oracle
+- Server : Apache Tomcat 8.5
 
 ## 구현기능
 - Actor 관리(2actors - 회원가입, 로그인, 마이페이지, 이력서, 채용공고 관리)   
@@ -21,3 +26,4 @@
 - Board 구현(리뷰, 법, 미디어 등)   
 
 ## Data Base 구성
+
